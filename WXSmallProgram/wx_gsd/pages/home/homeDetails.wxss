@@ -1,0 +1,180 @@
+.warp {
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.warp image {
+    width: 100%;
+    height: 110%;
+    position: fixed;
+    top:-30rpx;
+}
+
+.section1_view {
+    width: 92%;
+    margin-left: 4%;
+    margin-top: 110rpx;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: SourceHanSansCN-Heavy;
+    font-size: 24rpx;
+    line-height: 38rpx;
+    font-weight: bold;
+}
+
+.teach_img {
+    width: 164rpx;
+    height: 164rpx;
+    border-radius: 82rpx;
+    margin-top: -41rpx;
+    margin-bottom: 24rpx;
+}
+
+.base_scroll {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    top:0;
+}
+
+.teach_lab {
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+    margin-bottom: 38rpx;
+}
+
+.lab_items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 82%;
+    justify-content: flex-start;
+}
+
+.title_view {
+    width: 18%;
+    font-size: 22rpx;
+    font-family: SourceHanSansCN-Bold;
+    font-weight: bold;
+    color: rgba(75, 75, 75, 1);
+    padding-left: 10rpx;
+    
+}
+.lab_item{
+    height:34rpx; 
+    border-radius: 6rpx ;
+    font-size: 20rpx;
+    background: linear-gradient(to right, #6B7FFF , #EF6CF0); /* 标准的语法 */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0rpx 5rpx 10rpx rgba(0, 0, 1, 0.1);
+}
+
+.flg_icon {
+    width:42rpx;
+    height:29rpx; 
+}
+
+.section2_view {
+    margin-bottom: 100rpx;
+    margin-top: 60rpx;
+}
+.dafen_img {
+    width: 351rpx;
+    height: 100rpx;
+    margin-top: -50rpx;
+}
+
+.star_view{
+    height: 78rpx;
+    width: 92%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+.left_view {
+    width: 20%;
+    height: 100%;
+    font-size: 22rpx;
+    font-family: SourceHanSansCN-Bold;
+    font-weight: bold;
+    color: #FF753D;
+    align-items: center;
+    display: flex;
+    padding-left: 10rpx;
+}
+.right_view {
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+    padding-right: 20rpx;
+}
+.star {
+    float: left;
+    width: 51rpx;
+    height: 49rpx;
+    text-align: center;
+    line-height: 51rpx;
+    margin-right: 15rpx;
+}
+
+.star image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+
+.textarea-wrp {
+    padding: 35rpx;
+    background-color: #F5F5F5;
+    height:180rpx; 
+    width: 82%;
+    border-radius: 2px;
+    margin: 40rpx 0;
+    
+    
+}
+
+.footView {
+    width: 100%;
+    height: 100rpx;
+    background: #A390F2;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+    margin-top: 
+    
+}
+
+.phoneXfootView {
+    width: 100%; 
+    height: 134rpx;
+    background: #A390F2;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+    padding-top: 17rpx;
+}

@@ -1,0 +1,43 @@
+<import src="../common/foot.wxml" />
+
+<view class="container">
+    <block wx:for="{{itemArr}}" wx:key="id">
+        <view class="item_view" id="{{index}}" bindtap="selectItem">
+            <image src="{{item.headImg}}" class='head_img'></image>
+            <view class='content_view'>
+                <view class='text_view'>
+                    <text style="font-family:SourceHanSansCN-Heavy; font-size:24rpx; ">{{item.body.teacherEngName}}</text>
+                    <text style="font-family:SourceHanSansCN-Bold; font-size:24rpx;">{{item.title}}</text>
+                    <text style="color:#888888; font-size: 20rpx; font-weight:normal; margin-bottom: 16rpx; font-family:SourceHanSansCN-Regular;">{{item.body.teacherPosition}}</text>
+                </view>
+                <view class='footView'>
+                    <view class='foot_item'>
+                        <image src="../../images/timer.png" class='foot_icon'></image>
+                        <text>{{item.timer}}</text>
+                    </view>
+                    <view class='foot_item'>
+                        <image src="../../images/people.png" class='foot_icon'></image>
+                        <text>{{item.sharePeople}}</text>
+                    </view>
+                    <view class='foot_item'>
+                        <image src="../../images/like.png" class='foot_icon'></image>
+                        <text>{{item.enjoyPeople}}</text>
+                    </view>
+                </view>
+            </view>
+            <image src="{{item.body.teacherThumb}}" class='teacher_img'></image>
+        </view>
+    </block>
+
+    <block wx:if='{{showGujia}}'>
+        <view class="warp">
+            <image src="{{gujiaImgUrl}}"></image>
+        </view>
+    </block>
+
+  <!-- <view class="loading" hidden="{{searchLoadingComplete}}">正在载入更多...</view> -->
+  <view bindtap='loadMore' class="loading complete" hidden="{{searchLoadingComplete}}">点击加载更多</view>
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    <template is="foot" />
+
+</view>

@@ -1,0 +1,226 @@
+.container {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 100%;
+}
+
+.warp {
+  width: 100%;
+  height: 100%;
+}
+
+.warp image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.topImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.topImg image {
+  width: 484rpx;
+  height: 78rpx;
+  margin-top: 27rpx;
+}
+
+.topLeftImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.topLeftImg image {
+  width: 189rpx;
+  height: 293rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.topRightImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.topRightImg image {
+  width: 189rpx;
+  height: 293rpx;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.base_scroll {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.contentImg {
+  width: 690rpx;
+  height: 1167rpx;
+  margin-left: 30rpx;
+  position: relative;
+  display: flex;
+}
+
+.contentImg image {
+  width: 690rpx;
+  height: 1167rpx;
+}
+
+.footImgView {
+  width: 86%;
+  height: 325rpx;
+  position: absolute;
+  display: flex;
+  top: 760rpx;
+  left: 7%;
+}
+
+.footImgView image {
+  width: 100%;
+  height: 100%;
+}
+
+.textView {
+  width: 56%;
+  height: 600rpx;
+  left: 25%;
+  top: 120rpx;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textView text {
+  writing-mode: tb-rl;
+  color: #3d3d3d;
+  text-align: left;
+  font-size: 26rpx;
+  margin: 15rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+  letter-spacing: 8rpx;
+  margin-right: 80rpx;
+}
+
+.hdView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hdView image {
+  width: 90%;
+  height: 445rpx;
+  margin-top: 50rpx;
+}
+
+.footBtnsView {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 200rpx;
+}
+
+.footBtnsView view {
+  width: 310rpx;
+  height: 170rpx;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+  align-items: center;
+  position: relative;
+}
+
+.footBtnsView view image {
+  width: 310rpx;
+  height: 60rpx;
+}
+
+.footBtnsView view text {
+  font-size: 18rpx;
+  color: #d0b551;
+  margin-top: 13rpx;
+}
+
+.footBtnsView view button {
+  position: absolute;
+  width: 310rpx;
+  height: 60rpx;
+  top: 46rpx;
+  background: transparent;
+  border: none;
+}
+
+button::after {
+  border: none;
+}
+
+.tipView {
+  width: 100%;
+  height: 103%;
+  top: -30rpx;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  font-size: 18rpx;
+  display: flex;
+}
+
+.showQView {
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tipImage{
+    width: 750rpx;
+    height: 1334rpx;
+}
+
+.saveImgView {
+    margin-top: 24rpx;
+    width: 80%;
+    border-radius: 6rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: white;
+    flex-direction: row;
+}
+
+.saveBtnView {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    background: #A390F2;
+    height: 90rpx;
+    border-radius: 6rpx;
+    font-size: 28rpx;
+    font-weight: normal;
+    color: white;
+}

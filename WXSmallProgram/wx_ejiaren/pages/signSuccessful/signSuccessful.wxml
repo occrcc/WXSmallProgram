@@ -1,0 +1,37 @@
+<import src="../common/foot.wxml" />
+
+<view class="container">
+   <canvas canvas-id="my_Canvas" class='cavasStyle' />
+  <view class="warp">
+    <image src="http://pic.ejiarens.com/wx/hd_baseImg.png"></image>
+  </view>
+
+  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll'>
+    <view class='contentViewStyle'>
+      <image src="http://pic.ejiarens.com/wx/hd_s_headimg.png" class='headImage'></image>
+      <image src="http://pic.ejiarens.com/wx/hd_s_line.png" class='lineImg'></image>
+      <image src="http://pic.ejiarens.com/wx/hd_s_share.png" class='sharTitleImg'></image>
+       <image src="{{captchaImage}}" style="margin-bottom: 30rpx;margin-top: 60rpx;width:140px;height:140px;"></image> 
+
+      <view wx:if="{{loadingHidden}}" class='buttons'>
+        <view style='margin-left: 50rpx;' bindtap='saveCode'>
+          <image style='width: 318rpx;height: 70rpx;' src="http://pic.ejiarens.com/wx/hd_s_savebtn.png"></image>
+        </view>
+
+        <view style='margin-right: 50rpx; '>
+          <button class='tuijian_item' open-type="share">
+            <image style='width: 318rpx;height: 70rpx; background: transparent;' src="http://pic.ejiarens.com/wx/hd_s_sharebtn.png"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class='hd_s_footview'>
+      <image src="http://pic.ejiarens.com/wx/hd_s_footimg.png"></image>
+    </view>
+
+    <loading hidden="{{loadingHidden}}">
+      加载中...
+    </loading>
+  </scroll-view>
+</view>

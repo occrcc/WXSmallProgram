@@ -1,0 +1,177 @@
+.headBaseView {
+    width: 100%;
+    height: 465rpx;
+    background: #a9c6fc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headimg0 {
+    margin-top: 37rpx;
+    width: 330rpx;
+    height: 238rpx;
+}
+
+.headimg1 {
+    width: 324rpx;
+    height: 86rpx;
+}
+
+.contentView {
+    width: 92%;
+    margin-left: 4%;
+    margin-top: -30rpx;
+    height: 640rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 10rpx;
+    box-shadow: 5rpx 0rpx 15rpx rgba(0, 0, 0, 0.1);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20rpx;
+}
+
+.content_headimg {
+    width: 356rpx;
+    height: 105rpx;
+    margin-top: -52rpx;
+}
+
+.nameinput {
+    width: 86%;
+    height: 70rpx;
+    margin-left: 7%;
+    border-bottom-width: 1rpx;
+    border-bottom-color: rgba(229, 229, 229, 1);
+    border-bottom-style: solid;
+    display: flex;
+    font-size: 24rpx;
+    color: #636363;
+    line-height: 45rpx;
+    font-family: SourceHanSansCN-Regular;
+    margin-top: 98rpx;
+}
+
+.shenfen {
+    font-size: 30rpx;
+    color: #4b4b4b;
+    line-height: 45px;
+    font-weight: bold;
+    width: 100%;
+    height: 200rpx;
+    margin-top: 70rpx;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.radioLab {
+    color: #4b4b4b;
+    font-size: 26rpx;
+    line-height: 45rpx;
+    font-family: SourceHanSansCN-Regular;
+    font-weight: normal;
+}
+
+.foot_view {
+    width: 100%;
+    height: 99rpx;
+    background: #a390f2;
+    box-shadow: 5rpx 0rpx 15rpx rgba(0, 0, 0, 0.1);
+    font-size: 36rpx;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    position: fixed;
+    bottom: 0rpx;
+    justify-content: center;
+    align-items: center;
+}
+
+.phoneXfootView {
+    width: 100%;
+    height: 134rpx;
+    background: #a390f2;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+    padding-top: 17rpx;
+    font-weight: bold;
+}
+
+.ad_popError {
+    background: #DB4848;
+    color: #fff;
+    height: 64rpx;
+    line-height: 58rpx;
+    font-size: 26rpx;
+    text-align: left;
+    padding-left: 30rpx;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 9000;
+    opacity: 0.7;
+}
+
+.modalDlg {
+    width: 84%;
+    height: 400rpx;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 9999;
+    margin: -270rpx 8%;
+    background-color: #fff;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sourcefulImg {
+    width: 294rpx;
+    height: 240rpx;
+    margin-top: -120rpx;
+}
+
+.alertTextView {
+    width: 100%;
+    height: 160rpx;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.yesView {
+    width: 60%;
+    height: 64rpx;
+    margin-top: 17rpx;
+    background: #a390f2;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    color: rgba(255, 254, 254, 1);
+    line-height: 45px;
+}

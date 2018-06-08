@@ -1,0 +1,41 @@
+<view class="container">
+    <view class="warp">
+        <image src="../../images/back_img.png"></image>
+    </view>
+    <view class='base_scroll'>
+        <view class='headView'>
+            <image class='headImage' src="../../images/head_gsd.png"></image>
+            <image class='labelImage' src="../../images/label.png"></image>
+        </view>
+        <view class='baomingImg'>
+            <image class='baomingImg' src="../../images/baoming.png" style='width:243rpx;'></image>
+        </view>
+        <block wx:for="{{tips}}" wx:key="index">
+            <view class='fromView'>
+                <input class='fromText' data-id="{{index}}" value='{{item.value}}' bindfocus="bindFocus" bindinput="bindKeyInput" bindblur="realnameConfirm" placeholder="{{item.placeholder}}" placeholder-style="font-size:28rpx;color:#D0D0D0"></input>
+                <image src='../../images/lineImage.png' style='width:80%; height: 27rpx; margin-bottom: 50rpx; margin-left: 10%;'></image>
+            </view>
+        </block>
+        <view class='tijiaoWView'>
+            <view class='tijiaoView' bindtap='submitData' style='width: 320rpx; height: 80rpx;'>
+                <text>提交</text>
+            </view>
+        </view>
+    </view>
+    <block wx:if='{{showModal}}'>
+        <view class="modalDlg">
+            <view class='successfulIView'>
+                <image src='../../images/successful.png' class='successfulImage'></image>
+                <view class='footView'>
+                    <text style='color:#404040;font-size:24rpx;'>报名结果请以确认短信为准 </text>
+                    <view bindtap='confirmBtn' class='tijiaoView' style='margin-top: 40rpx; margin-bottom:0'>
+                        <text>确认</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <loading hidden="{{hidden}}">
+        提交中...
+    </loading>
+</view>

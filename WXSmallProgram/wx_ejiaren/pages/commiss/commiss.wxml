@@ -1,0 +1,47 @@
+
+<import src="../common/foot.wxml" />
+<view class="container">
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="modalDlg" wx:if="{{showModal}}">
+        <image class='sourcefulImg' src="../../images/successful.png" />
+        <view class='alertTextView'>
+            <text style='color: #DB4848; font-size:30rpx; line-height:45rpx;'>预约成功</text>
+            <text style='color: #4B4B4B; font-size:24rpx; line-height:45rpx;'>大神将尽快与您取得联系</text>
+        </view>
+        <view bindtap="hide" class='yesView'>
+            <text>朕知道了</text>
+        </view>
+    </view>
+    <view class="ad_popError" wx:if="{{popErrorMsg}}">{{popErrorMsg}}</view>
+    <view class='headBaseView'>
+        <image src="http://pic.ejiarens.com/wx/com_headimg0.png" class='headimg0'></image>
+        <image src="http://pic.ejiarens.com/wx/com_headimg1.png" class='headimg1'></image>
+    </view>
+    <view class='contentView'>
+        <image class='content_headimg' src="http://pic.ejiarens.com/wx/com_headimg3.png"></image>
+        <view style='width: 100%;'>
+            <view class="nameinput">
+                <input name="name" bindinput="nameInput" placeholder="请输入用户名" style='width:100%' />
+            </view>
+            <view class="nameinput" style='margin-top: 70rpx;'>
+                <input type='number' bindinput="phoneInput" placeholder="请填写真实手机号码，方便大神与您联系" style='width:100%' />
+            </view>
+            <view class='shenfen'>
+                <text style="">您的身份是</text>
+                <view class="page-section page-section-gap">
+                    <radio-group name="radio" bindchange="radioChange">
+                        <label class='radioLab' style='margin-right: 157rpx;'>
+                            <radio checked="true" style='margin-right: 20rpx;' color="#3B8DEA" value="1" />学生</label>
+                        <label class='radioLab'>
+                            <radio style='margin-right: 20rpx;  transform: 0.5;' color="#3B8DEA" value="2" />家长</label>
+                    </radio-group>
+                </view>
+            </view>
+        </view>
+    </view>
+    <template is="foot" />
+
+    <view class="{{isIphoneX?'phoneXfootView':'foot_view'}}" bindtap='submitYuyue'>
+        <text>约，坐等大神来撩</text>
+    </view>
+</view>

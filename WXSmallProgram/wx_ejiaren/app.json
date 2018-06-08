@@ -1,0 +1,26 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/home/home",
+    "pages/homeDetails/homeDetails",
+    "pages/invitation/invitation",
+    "pages/commiss/commiss",
+    "pages/authorization/authorization",
+    "pages/signUp/signUp",
+    "pages/signInput/signInput",
+    "pages/signSuccessful/signSuccessful",
+    "pages/zouzhe/zzList/zzList",
+    "pages/zouzhe/zzPiyue/zzPiyue",
+    "pages/zouzhe/zzContent/zzContent",
+    "pages/promote/promote",
+    "pages/logs/logs"
+  ],
+
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2D2D2D",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#2D2D2D"
+  }
+}

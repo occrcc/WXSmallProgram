@@ -1,0 +1,118 @@
+.container {
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 100%;
+}
+
+.warp {
+  width: 100%;
+  height: 100%;
+}
+
+.warp image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.base_scroll {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.sectionView {
+  width: 100%;
+  margin-top: 35rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  /* justify-content: center; */
+  margin-bottom: 4rpx;
+  
+}
+
+.itemStyle {
+  width: 288rpx;
+  height: 455rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.itemContent image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.inputView {
+  width: 240rpx;
+  height: 380rpx;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 7.5rpx;
+}
+
+.inputViewText {
+  width: 70rpx;
+  height: 260rpx;
+  position: absolute;
+  top: 75rpx;
+  padding: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.inputViewText text{
+  writing-mode: tb-rl;
+  color: #DF3836;
+  text-align: left;
+  font-size: 24rpx;
+
+}
+
+.loading {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 24rpx;
+  display: flex;
+  font-size: 24rpx;
+  color: #8a8a8a;
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  background:url(http://pic.ejiarens.com/wx/icon-loading.gif) no-repeat;
+  /* background-size: contain; */
+  /* animation: rotate 1s linear infinite; */
+}
+
+.loading.complete:before {
+  display: none;
+}
+

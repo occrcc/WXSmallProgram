@@ -1,0 +1,5 @@
+<template name="foot">
+  <navigator url="../promote/promote" class="page-foot"   hover-class="none">
+    <image class="icon-foot" src="../../images/icon_foot.png"></image>
+  </navigator>
+</template>

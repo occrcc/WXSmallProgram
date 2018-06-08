@@ -1,0 +1,19 @@
+<import src="../../common/foot.wxml" />
+
+<view class='baseViewContainer'>
+  <view class="warp">
+    <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_piyue_base.png"></image>
+  </view>
+  <view class='base_scroll'>
+    <view class='contentView'>
+      <view class='waiView'>
+        <view class='neiView'>
+          <text>{{item.title}}</text>
+        </view>
+      </view>
+      <view class='piyueClass' bindtap='piyue'>
+        <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/piyueBtn.png"></image>
+      </view>
+    </view>
+  </view>
+</view>

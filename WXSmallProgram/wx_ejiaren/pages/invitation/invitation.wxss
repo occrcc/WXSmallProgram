@@ -1,0 +1,271 @@
+.warp {
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+.warp image {
+    width: 100%;
+    height: 110%;
+    position: fixed;
+    top:-30rpx;
+}
+
+
+
+.section1_view {
+    width: 92%;
+    margin-left: 4%;
+    margin-top: 60rpx;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: SourceHanSansCN-Heavy;
+    font-size: 24rpx;
+    line-height: 38rpx;
+    font-weight: bold;
+}
+
+.teach_img {
+    width: 164rpx;
+    height: 164rpx;
+    border-radius: 82rpx;
+    margin-top: -41rpx;
+    margin-bottom: 24rpx;
+}
+
+.base_scroll {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    top:0;
+}
+
+.teach_lab {
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+    margin-bottom: 38rpx;
+}
+
+.lab_items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 82%;
+    justify-content: flex-start;
+}
+
+.title_view {
+    width: 18%;
+    font-size: 22rpx;
+    font-family: SourceHanSansCN-Bold;
+    font-weight: bold;
+    color: rgba(75, 75, 75, 1);
+    padding-left: 10rpx;
+    
+}
+.lab_item{
+    height:34rpx; 
+    border-radius: 6rpx ;
+    font-size: 20rpx;
+    background: linear-gradient(to right, #6B7FFF , #EF6CF0); /* 标准的语法 */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0rpx 5rpx 10rpx rgba(0, 0, 1, 0.1);
+}
+
+.flg_icon {
+    width:42rpx;
+    height:29rpx; 
+}
+
+
+.dafen_img {
+    width: 351rpx;
+    height: 100rpx;
+    margin-top: -50rpx;
+}
+
+
+.footView {
+    width: 100%;
+    height: 80rpx;
+    background: #A390F2;
+    position: fixed;
+    bottom: 0rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+}
+
+.phoneXfootView {
+    width: 100%;
+    height: 134rpx;
+    background: #A390F2;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+    padding-top: 17rpx;
+}
+.canvas {
+    width: 100%;
+    height: 460rpx;
+}
+
+.canvasImg {
+    width: 330px;
+    height: 230px;
+    margin-left: -30rpx;
+}
+
+
+.radar{
+    width: 100%;
+}
+
+.henlan {
+    width: 588rpx;
+    height: 103rpx;
+    margin-bottom: 60rpx;
+}
+.tuijian {
+    width: 597rpx;
+    height: 432rpx;
+}
+.tuijian_footview{
+    width: 100%;
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    border-radius: 4rpx;
+}
+
+
+.tuijian_item {
+    width: 45.5%;
+    margin-left: 3%;
+    height: 64rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 4rpx;
+    background:rgba(163,144,242,1);
+    color: white;
+    font-size: 24rpx;
+    font-family:Regular;
+    margin-right: 0rpx;
+}
+.tuijian_item::after {
+    border: none;
+}
+
+
+.tuijianbtn_nomal {
+    background:rgba(221,218,234,1);
+}
+.myReward {
+    width: 80%;
+    height: 164rpx;
+    display: flex;
+    flex-direction: column;
+    background: #E1F0FC;
+    border-width: 8rpx;
+    border-color: #B0D2FD;
+    border-style: solid;
+    border-radius: 10rpx;
+    align-items: center;
+    color: #64A5F8;
+    font-size: 24rpx;
+    font-family:SourceHanSansCN-Medium;
+    margin-bottom: 60rpx;
+}
+.jiangliTextView {
+    width: 86%;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myLeftView {
+    height: 100%;
+    width: 16%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.myRightView {
+    height: 100%;
+    width: 84%;
+    display: flex;
+}
+
+.tipImage{
+    width: 750rpx;
+    height: 1334rpx;
+}
+
+.saveImgView {
+    margin-top: 24rpx;
+    width: 80%;
+    border-radius: 6rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28rpx;
+    font-weight: bold;
+    color: white;
+    flex-direction: row;
+}
+
+.saveBtnView {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    background: #A390F2;
+    height: 90rpx;
+    border-radius: 6rpx;
+    font-size: 28rpx;
+    font-weight: normal;
+    color: white;
+}
+
+.tipView {
+    width: 100%;
+    height: 103%;
+    top:-30rpx;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    font-size: 18rpx;
+    display: flex;
+}
+
+.showQView {
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

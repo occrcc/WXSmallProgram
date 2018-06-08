@@ -1,0 +1,70 @@
+<import src="../zzFoot/zzFoot.wxml" />
+
+<view class='baseViewContainer'>
+  <view class="warp">
+    <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_content_base.png"></image>
+  </view>
+
+  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll'>
+
+    <view class="topImg">
+    <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_hua.png"></image>
+  </view>
+
+    <view class='contentImg'>
+      <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_content.png"></image>
+      <view class='textView'>
+        <text>{{item.body.info}}</text>
+      </view>
+      <view wx:if="{{item.body.conductpropaganda.length > 1}}" class='footImgView'>
+        <image mode='scaleToFill' src="{{item.body.conductpropaganda}}"></image>
+      </view>
+    </view>
+
+    <view class='hdView'>
+      <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_zhen.png"></image>
+
+      <view class='footBtnsView'>
+        <view bindtap='showHaibao'>
+          <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_zhaogao.png"></image>
+          <text>(一键生成海报)</text>
+        </view>
+        <view>
+          <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_shar.png"></image>
+          <text>(一键分享给好友)</text>
+          <button open-type="share" bindtap='tongji'></button>
+        </view>
+      </view>
+    </view>
+    <template is="foot" />
+  </scroll-view>
+
+  
+  <view class="topLeftImg">
+    <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_top_left.png"></image>
+  </view>
+  <view class="topRightImg">
+    <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/zz_top_right.png"></image>
+  </view>
+
+  <block wx:if="{{baseTipViewShow}}">
+    <view class='tipView' bindtap='selectBaseImage'>
+      <view class='showQView'>
+        <image mode='aspectFit' class='tipImage' src='{{baseImgUrl}}' bindtap='selectBaseImage'></image>
+        <view class='saveImgView'>
+          <button class='saveBtnView' open-type="share" style='margin-right: 40rpx; ' bindtap='tongji'>
+            推荐给好友
+          </button>
+          <view class='saveBtnView' bindtap='saveImage'>
+            <text>保存到相册</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view />
+  </block>
+
+
+</view>

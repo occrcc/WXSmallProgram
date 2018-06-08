@@ -1,0 +1,420 @@
+
+@import "/pages/wxParse/wxParse.wxss";
+
+.warp {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.warp image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  
+}
+
+.baseView {
+  width: 100%;
+  height: 102%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: -20rpx;
+  z-index: 999;
+}
+
+
+
+.showAlertView {
+  background-color: white;
+  width: 100%;
+  position:absolute;
+  display: flex;
+  bottom: 0;
+  flex-direction: column;
+}
+.showAletTitleView {
+  width: 100%;
+  height: 80rpx;
+  background-color: #F4F4F4;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  
+}
+
+.base_scroll {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+}
+
+.headImg {
+  width: 522rpx;
+  height: 120rpx;
+}
+
+.contentViewStyle {
+  display: flex;
+  width: 100%;
+  margin-top: 24rpx;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.textStyle {
+  color: #993537;
+  font-size: 54rpx;
+  font-weight: bold;
+  margin-left: 67rpx;
+  margin-right: 67rpx;
+  font-family: 'Lucida Sans',
+                 'Lucida Sans Regular',
+                 'Lucida Grande',
+                 'Lucida Sans Unicode',
+                 Geneva,
+                 Verdana,
+                 sans-serif;
+}
+
+.fubiao_image {
+  width: 86%;
+  height: 148rpx;
+}
+
+.fubiaoTextView {
+  position: absolute;
+  width: 92%;
+  display: flex;
+  height: 148rpx;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #193150;
+}
+
+.lineStar {
+  width: 92%;
+  height: 196rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.lineStarTextView {
+  width: 72%;
+  display: flex;
+  font-size: 36rpx;
+  color: #193150;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lineTextStyle {
+  font-weight: bold;
+  color: #193150;
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20rpx;
+  
+  
+  
+}
+
+.lineStar image {
+  width: 92%;
+  height: 196rpx;
+}
+
+.inputViewStyle {
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputContenteViewStyle {
+  border: 5px solid #193150;
+  width: 92%;
+  flex-direction: column;
+  display: flex;
+}
+
+.inputItemView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20rpx;
+}
+
+.inputItemView text {
+  color: '#193150';
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  font-family: 'Lucida Sans',
+                 'Lucida Sans Regular',
+                 'Lucida Grande',
+                 'Lucida Sans Unicode',
+                 Geneva,
+                 Verdana,
+                 sans-serif;
+}
+
+.hd_text {
+  color: '#193150';
+  margin: 30rpx;
+  margin-bottom: 120rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  font-family: 'Lucida Sans',
+                 'Lucida Sans Regular',
+                 'Lucida Grande',
+                 'Lucida Sans Unicode',
+                 Geneva,
+                 Verdana,
+                 sans-serif;
+}
+
+.inpuImgViewStyle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inpuImgViewStyle image {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height: 73rpx;
+  margin-top: 10rpx;
+}
+
+.inpuImgViewStyle picker {
+  left: 100rpx;
+  right: 100rpx;
+  height: 70rpx;
+  position: absolute;
+  font-size: 30rpx;
+  color: #fff;
+  
+}
+
+.inpuImgViewStyle input {
+  left: 100rpx;
+  right: 100rpx;
+  height: 73rpx;
+  position: absolute;
+  padding-left: 2%;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.inpuImgViewStyle view {
+  left: 90rpx;
+  right: 90rpx;
+  height: 73rpx;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.submitView {
+  width: 92%;
+  height: 80rpx;
+  margin-top: 70rpx;
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+.checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx; /* 背景的宽 */
+   height: 40rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: red;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 40rpx;
+   text-align: center;
+   font-size:30rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+.chekboxLabStyle{
+  flex-direction: row;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid #DEDEDE;
+  
+  
+ 
+}
+
+.hd_foot_leftView {
+  width: 300rpx;
+  height: 283rpx;
+  left: 0;
+  margin-left: 0;
+  padding: 0;
+  bottom: 0rpx;
+  display: flex;
+  position: relative;
+  top:-300rpx;
+  
+}
+
+.hd_foot_leftView image {
+  width: 340rpx;
+  height:  303rpx;
+  margin-left: -20rpx;
+}
+
+.hd_foot_baoming {
+  width: 275rpx;
+  height: 70rpx;
+}
+
+.hd_foot_lhd_foot_baomingeftView image {
+  width: 275rpx;
+  height: 70rpx;
+}
+
+.subTextStyle {
+  font-weight: bold;
+  text-align: center;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.peopleViewStyle {
+  width: 100%;
+  height: 100rpx;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.peopleStyle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 70rpx;
+  margin-left: 15rpx;
+}
+
+.peopleTx {
+  width: 63rpx;
+  height: 63rpx;
+  display: flex;
+  border-radius: 4rpx;
+  box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 1, 0.1);
+}
+
+.peopleTx image {
+  width: 63rpx;
+  height: 63rpx;
+}
+
+.peopleStyle text {
+  color: #162D4B;
+  font-size:16rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+
+.footView {
+    width: 100%;
+    height: 80rpx;
+    background: #993537;
+    position: fixed;
+    bottom: 0rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+}
+
+.footView button {
+  background: transparent;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: white;
+}
+
+.phoneXfootView {
+    width: 100%;
+    height: 134rpx;
+    background: #993537;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 36rpx;
+    letter-spacing: 0.1em;
+    padding-top: 17rpx;
+}
+
+.phoneXfootView button {
+  background: transparent;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: white;
+}
+
+
+button::after {
+  border: none;
+}

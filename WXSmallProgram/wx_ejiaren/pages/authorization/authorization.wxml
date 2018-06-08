@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="warp">
+    <image src="../../images/base_shouquan.png"></image>
+  </view>
+  <view class='base_scroll'>
+    <image src="../../images/shouquan_btn.png" class='shouquanImg'></image>
+    <button wx:if="{{canIUse}}" class='getBtnStyle' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
+</view>

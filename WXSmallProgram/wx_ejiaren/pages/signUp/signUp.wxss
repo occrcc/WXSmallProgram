@@ -1,0 +1,80 @@
+.listView {
+  margin-left: 2.5%;
+  width: 95%;
+  height: 200rpx;
+  margin-top: 26rpx;
+  display: flex;
+  box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 1, 0.1);
+}
+
+.listImg {
+  width: 95%;
+  height: 200rpx;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.textStyle {
+  color: #993537;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-left: 67rpx;
+  margin-right: 67rpx;
+  font-family: MicrosoftYaHei-Bold;
+  text-shadow: 0.07em 0.07em #41150c;
+}
+
+.subTextStyle {
+  color: #993537;
+  font-size: 12px;
+  margin-left: 67rpx;
+  margin-right: 67rpx;
+  margin-top: 8rpx;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.mengbanImg {
+  width: 95%;
+  height: 200rpx;
+  position: absolute;
+  display: flex;
+}
+
+.loading {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 24rpx;
+  display: flex;
+  font-size: 24rpx;
+  color: #8a8a8a;
+  background: transparent;
+}
+
+.loading:before {
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  background:transparent url(http://pic.ejiarens.com/wx/icon-loading.gif) no-repeat;
+  background-size: contain; 
+  background-color: transparent;
+  animation: rotate 1s linear infinite; 
+}
+
+.loading.complete:before {
+  display: none;
+}

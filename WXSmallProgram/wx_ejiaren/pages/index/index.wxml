@@ -1,0 +1,15 @@
+<import src="../common/foot.wxml" />
+
+<view class="container">
+
+  <block wx:for="{{listImgUrls}}" wx:key="id">
+    <view class="listView" id="{{index}}" bindtap="selectItem">
+      <image src="{{item}}" class='listImg'></image>
+    </view>
+  </block>
+
+
+  <view style='height:80rpx;width: 95%;' />
+  <template is="foot" />
+
+</view>

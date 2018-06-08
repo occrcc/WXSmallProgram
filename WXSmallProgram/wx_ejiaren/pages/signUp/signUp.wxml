@@ -1,0 +1,29 @@
+<import src="../common/foot.wxml" />
+
+<view class="container">
+  <block wx:for="{{itemArr}}" wx:key="id">
+    <view class="listView" id="{{index}}" bindtap="selectItem">
+      <image src="http://pic.ejiarens.com/wx/hd_base0.png" class='listImg'></image>
+      <view class='listImg'>
+        <text class='textStyle'>{{item.title}}</text>
+        <text class='subTextStyle'>{{item.body.subheading}}</text>
+      </view>
+      <image src="http://pic.ejiarens.com/wx/hd_base1.png" class='mengbanImg'></image>
+    </view>
+  </block>
+
+  <view class="listView" id="{{index}}">
+    <image src="http://pic.ejiarens.com/wx/hd_foot.png" class='listImg'></image>
+  </view>
+
+  <!-- <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading> -->
+
+  <!-- <view class="loading" hidden="{{searchLoadingComplete}}">正在载入更多...</view> -->
+  <view bindtap='loadMore' class="loading complete" hidden="{{searchLoadingComplete}}">点击加载更多</view>
+  <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+
+  <template is="foot" />
+
+</view>

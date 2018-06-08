@@ -1,0 +1,94 @@
+.warp {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.warp image {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0rpx;
+  
+}
+
+.base_scroll {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+}
+
+.contentViewStyle {
+  display: flex;
+  width: 100%;
+  margin-top: 24rpx;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.headImage {
+  width: 682rpx;
+  height: 395rpx;
+  margin-top: 21rpx;
+}
+
+.lineImg {
+  margin-top: 21rpx;
+  width: 668rpx;
+  height: 37rpx;
+}
+
+.sharTitleImg {
+  width: 660rpx;
+  height: 84rpx;
+  margin-top: 21rpx;
+}
+
+.hd_s_footview {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 334rpx;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.hd_s_footview image {
+  width: 555rpx;
+  height: 334rpx;
+}
+
+.buttons {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons view {
+  width: 318rpx;
+  height: 70rpx;
+  background: transparent;
+}
+
+.tuijian_item {
+  background: transparent;
+  width: 318rpx;
+  height: 70rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.cavasStyle {
+  margin-top: -660rpx;
+  width:140px;
+  height:140px;
+}

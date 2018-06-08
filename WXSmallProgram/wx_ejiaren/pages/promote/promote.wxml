@@ -1,0 +1,10 @@
+<view class="warp">
+  <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/promote.png"></image>
+  <view class='inputView'>
+    <view wx:for="{{inputArr}}" wx:key="index">
+      <input class='fromType' data-id="{{index}}" value='{{item.value}}' bindfocus="bindFocus" bindinput="bindKeyInput" bindblur="realnameConfirm" placeholder="{{item.placeholder}}" placeholder-style="font-size:28rpx;color:#D0D0D0"></input>
+    </view>
+    <view class='submitBtn' bindtap='submitData'>
+    </view>
+  </view>
+</view>

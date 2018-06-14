@@ -1,0 +1,114 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <view class="warp">
+    <image src="http://pic.ejiarens.com/wx/sjb_base.jpg"></image>
+  </view>
+
+  <view class='base_scroll'>
+    <view class='headLogoView'>
+      <image style='width: 74rpx;height: 74rpx;' src='http://pic.ejiarens.com/wx/sjb_headlogo.png'></image>
+      <image style='width: 14rpx;height: 69rpx;margin-left: 8rpx;margin-right: 8rpx;' src='http://pic.ejiarens.com/wx/sjb_headmind.png'></image>
+      <view class='ognzLogoStyle'>
+        <image src='{{ognzIcon}}'></image>
+        <text>{{ognz_name}}</text>
+      </view>
+    </view>
+    <view class='headImgViewStyle'>
+      <image src='http://pic.ejiarens.com/wx/sjb_head_img.png'></image>
+    </view>
+    <view wx:if='{{allData.body.rewardText.length>0}}' class='headView'>
+      <image src='http://pic.ejiarens.com/wx/sjb_jiangpin.png'></image>
+      <view>
+        <text>猜中冠军有机会获得<text class='titleViewTextStyle'>{{ognz_name}}</text>提供的
+        <text class='titleViewTextStyle'>{{allData.body.rewardText}}</text></text>
+        <text style='color: #D3E045; font-size:24rpx; font-weight: bold; margin-top: 15rpx;' bindtap='showDetails'>查看活动详情</text>
+      </view>
+    </view>
+    <view class='contentViewStyle'>
+      <image src='http://pic.ejiarens.com/wx/sjb_content_headimg.png'></image>
+      <view class='contentView'>
+        <block wx:for='{{allData.body.teams}}' wx:for-item="item" wx:key='{{index}}'>
+          <view class='contentItem'>
+            <form bindsubmit="selectItem" report-submit='true' id='{{index}}'>
+              <button form-type="submit">
+                <image src="{{item.thumb}}" />
+                <text wx:if='{{selectId == item.score}}' style='color:#E1D3A0'>{{item.name}}</text>
+                <text wx:else style='color:white'>{{item.name}}</text>
+                <text style='color:white;top:134rpx;font-size: 18rpx;'>已有{{item.score}}人选择</text>
+                <view wx:if='{{selectId == index && hideName == ""}}'>
+                  <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/sjb_meng.png" />
+                </view>
+                <view wx:if='{{hideName == item.name}}'>
+                  <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/sjb_noselect.png" />
+                </view>
+              </button>
+            </form>
+          </view>
+        </block>
+        
+        <view wx:if='{{selectId >= 0}}'  class='chooseSureBtnStyle' bindtap='showSureBtn'>
+          <image src='http://pic.ejiarens.com/wx/sjb_surebtn.png'></image>
+        </view>
+      </view>
+    </view>
+
+    <view class='sharView'>
+      <form bindsubmit="sharActivity" report-submit='true'>
+        <button form-type="submit" class='sharBtnStyle' open-type="share" bindtap='tongji'>
+          <image src="http://pic.ejiarens.com/wx/sjb_shar_foot.png" />
+          <view>
+            <text>分享这个活动到微信</text>
+          </view>
+        </button>
+      </form>
+    </view>
+
+
+    <view wx:if='{{hideName.length > 0}}' class='sharView' style='top: 230rpx;'>
+      <form bindsubmit="getHaibao" report-submit='true'>
+        <button form-type="submit" class='sharBtnStyle'>
+          <image src="http://pic.ejiarens.com/wx/sjb_shar_foot.png" />
+          <view>
+            <text>一键生成海报</text>
+          </view>
+        </button>
+      </form>
+    </view>
+
+    <view style='width: 100%; height: 120rpx;top: 240rpx; position: relative;'>
+      <template is="foot" />
+    </view>
+
+
+  </view>
+  <block wx:if="{{baseTipViewShow}}">
+    <view class='tipView' bindtap='selectBaseImage'>
+      <view class='showQView'>
+        <image mode='aspectFit' class='tipImage' src='{{baseImgUrl}}' bindtap='selectBaseImage'></image>
+        <view class='saveImgView'>
+          <button class='saveBtnView' open-type="share" style='margin-right: 40rpx; ' bindtap='tongji'>
+            推荐给好友
+          </button>
+          <view class='saveBtnView' bindtap='saveImage'>
+            <text>保存到相册</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view />
+  </block>
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+
+  <modal hidden="{{hidden}}" title="活动详情" confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">
+    <text>· 活动规则：您选择的冠军与最终结果相同，即竞猜成功以7月15日最终比赛结果为准）\r\n</text>
+    <text>· 活动奖励：{{allData.body.rewardText}} \r\n</text>
+    <text>· 领奖方式：{{allData.body.prizes}} \r\n</text>
+    <text wx:if='{{allData.body.info.length > 0}}'>· 活动说明：{{allData.body.info}}</text>
+  </modal>
+
+</view>

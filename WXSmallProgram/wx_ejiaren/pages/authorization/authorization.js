@@ -27,8 +27,10 @@ Page({
       pageUrl = '../signInput/signInput?id=' + options.id;
     } else if (options.page == 'zzContent') {
       pageUrl = '../zouzhe/zzContent/zzContent?id=' + options.id;
+    } else if (options.page == 'sjbHome') {
+      pageUrl = '../sjb/sjbHome/sjb_home?id=' + options.id;
     }
-
+    
 
     if (e.detail.userInfo) {
       //用户按了允许授权按钮

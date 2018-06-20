@@ -29,12 +29,10 @@ App({
     userInfo: null,
     hasLogin: false,
 
-    ognz_id: '292',
-    app_id: 'wx228149285d62ecbd',
-    app_secret: 'e5e909f4b4afdf81522dd56fdaa2aec4',
-    ognz_name:'思铺学术',
-
-
+    ognz_id: '275',
+    app_id: 'wxdcd3e1f2d5c97b8f',
+    app_secret: 'a0d4fc5d1b7d8195086fa0c4c46e5954',
+    ognz_name:'逸家人科技',
     openId:'',
   },
 

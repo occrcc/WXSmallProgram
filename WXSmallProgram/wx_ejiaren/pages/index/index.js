@@ -6,20 +6,18 @@ var app = getApp();
 
 Page({
   data: {
-    //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     listImgUrls: [
       'http://pic.ejiarens.com/wx/sjb_list.jpg',
       'http://pic.ejiarens.com/wx/home_list1.png',
       'http://pic.ejiarens.com/wx/home_list2.png',
       'http://pic.ejiarens.com/wx/home_list3.png',
-      
+      'http://pic.ejiarens.com/wx/home_list3.png',
       'http://pic.ejiarens.com/wx/home_list99.png'],
     isOk: false,
     netWork: true,
     selectSJBUrl: '',
   },
-
 
 
   onLoad: function (options) {
@@ -30,6 +28,9 @@ Page({
       case '288': ognz_name = '艾芯留学'; break;
       case '163': ognz_name = '威久留学'; break;
       case '292': ognz_name = '思铺学术'; break;
+      case '293': ognz_name = '智联留学'; break;
+      case '291': ognz_name = '橙说教育'; break;
+      case '294': ognz_name = '现代教育A-level中心'; break;
     }
     app.globalData.ognz_name = ognz_name;
 
@@ -96,9 +97,9 @@ Page({
       },
       fail: function (err) {
         console.log("loadUserError: ", err);
-        wx.redirectTo({
-          url: '../authorization/authorization?page=index',
-        })
+        // wx.redirectTo({
+        //   url: '../authorization/authorization?page=index',
+        // })
       }
     })
   },
@@ -118,10 +119,10 @@ Page({
 
   selectItem: function (event) {
     if (!this.data.isOk) {
-      wx.redirectTo({
-        url: '../authorization/authorization?page=index',
-      })
-      return;
+      // wx.redirectTo({
+      //   url: '../authorization/authorization?page=index',
+      // })
+      // return;
     }
 
     let index = parseInt(event.currentTarget.id);
@@ -130,6 +131,7 @@ Page({
       case (1): navUrl = '../signUp/signUp'; break;
       case (2): navUrl = '../home/home'; break;
       case (3): navUrl = '../zouzhe/zzList/zzList'; break;
+      case (4): navUrl = '../test/testHome/testHome'; break;
       case (0): {
         if (this.data.selectSJBUrl.length > 0) {
           navUrl = this.data.selectSJBUrl;

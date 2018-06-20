@@ -17,9 +17,6 @@ wx.getSystemInfo({
     }
 });
 
-
-
-
 var radarChart = null;
 var app = getApp();
 Page({
@@ -172,13 +169,7 @@ Page({
         }
     },
 
-    onReady: function () {
-      if (!this.data.userInfo) {
-        wx.redirectTo({
-          url: '../authorization/authorization?page=invitation&invitation=' + this.data.invitation + '&sharid=' + this.data.sharId + '&data=' + this.data.initData,
-        })
-      }
-    },
+   
 
     onLoad: function (options) {
       var that = this;
@@ -193,6 +184,12 @@ Page({
       }
 
       this.loadUserInfo((res) => {
+        if (res == null && options.sharid) {
+          wx.redirectTo({
+            url: '../authorization/authorization?page=invitation&invitation=' + options.invitation + '&sharid=' + options.sharid,
+          })
+          return;
+        }
         if (parseInt(options.sharid) > 0) {
           network.GET({
             params: {},
@@ -212,6 +209,7 @@ Page({
             },
           })
         } else {
+          console.log('带数据过来的');
           var item = JSON.parse(options.data);
           that.initData(item, options, res);
         }
@@ -266,6 +264,7 @@ Page({
             }],
             width: canvasw,
             height: 200,
+            animation:false,
             extra: {
                 radar: {
                     max: 5
@@ -297,6 +296,9 @@ Page({
                 })
                 backres(res.data);
             },
+            fail:function(res){
+              backres(null);
+            }
         })
     },
 

@@ -135,6 +135,9 @@ Page({
             },
             '香港': {
                 url: 'xianggang.png'
+            }, 
+            '韩国': {
+              url: 'hanguo.png'
             },
             '其他': {
                 url: 'qita.png'

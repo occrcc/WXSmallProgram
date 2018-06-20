@@ -1,0 +1,188 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.headImgStyle {
+  width: 640rpx;
+  height: 275rpx;
+  margin-top: 78rpx;
+}
+
+.titleImgStyle {
+  width: 544rpx;
+  height: 132rpx;
+  margin-top: -176rpx;
+}
+
+.mindImgStyle {
+  width: 548rpx;
+  height: 394rpx;
+  margin-top: 71rpx;
+}
+
+.waterImgStyle {
+  width: 394rpx;
+  height: 127rpx;
+  margin-top: -150rpx;
+}
+
+.shipImgStyle {
+  width: 287rpx;
+  height: 300rpx;
+  margin-top: -360rpx;
+}
+
+.shipFootStyle {
+  width: 200rpx;
+  height: 42rpx;
+  position: relative;
+  top: -30rpx;
+}
+
+.footImgStyle {
+  width: 100%;
+  height: 220rpx;
+  position: absolute;
+  bottom: 0;
+}
+
+.buttonStyle {
+  width: 342rpx;
+  height: 77rpx;
+  position: absolute;
+  bottom: 350rpx;
+}
+
+.noticeStyle {
+  position: absolute;
+  bottom: 290rpx;
+  font-size: 30rpx;
+  color: #2b303a;
+}
+
+.showResults {
+  position: absolute;
+  width: 50%;
+  height: 60rpx;
+  bottom: 227rpx;
+}
+
+.showResults button {
+  width: 100%;
+  height: 60rpx;
+  font-size: 30rpx;
+  color: #4558e4;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.startBaseStyle {
+  background: #5d1f1f;
+  width: 342rpx;
+  height: 77rpx;
+  margin-left: 6rpx;
+  margin-top: 6rpx;
+  position: absolute;
+}
+
+.startBaseStyle1 {
+  background: #ee6363;
+  width: 342rpx;
+  height: 77rpx;
+  position: absolute;
+  font-size: 30rpx;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.complaints {
+  height: 46rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 25rpx;
+  background: rgb(198, 160, 76);
+  display: flex;
+  border-radius: 23rpx;
+  border: solid 5rpx white;
+}
+
+.complaints button {
+  background: transparent;
+  height: 46rpx;
+  font-size: 20rpx;
+  color: #fffefe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  
+}
+
+.complaintsImage{
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 10rpx;
+}
+
+
+
+button::after {
+  border: none;
+}
+
+.modelView {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modelCenterView {
+  width: 72%;
+  background: white;
+  border-radius: 10rpx;
+  flex-direction: column;
+}
+.titleView {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  border-bottom: 1rpx rgb(222, 222, 222) solid; 
+}
+
+.sqBtnView {
+  width: 100%;
+  height: 80rpx; 
+  display: flex;
+  align-items: center;
+  color:black;
+  font-size:30rpx; 
+  flex-direction: row;
+  justify-content: space-between;
+}
+.btnItem{
+  width: 50%;
+  height: 80rpx; 
+  justify-content: center; 
+  display: flex;
+  align-items: center; 
+  text-align: center; 
+  
+}

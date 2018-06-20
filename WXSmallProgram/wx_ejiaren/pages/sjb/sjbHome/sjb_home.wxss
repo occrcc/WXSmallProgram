@@ -1,6 +1,6 @@
 .baseContainer {
   display: flex;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(0, 68, 126, 1);
   width: 100%;
 }
 
@@ -10,7 +10,6 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  position: relative;
   align-items: center;
 }
 
@@ -18,7 +17,6 @@
 .warp image {
   width: 100%;
   height: 2100rpx;
-
 }
 
 .base_scroll {
@@ -83,8 +81,8 @@
 .ognzLogoStyle image {
   width: 46rpx;
   height: 46rpx;
-  border-radius: 6rpx;
-  border: solid 3rpx rgb(197, 174, 135);
+  /* border-radius: 6rpx;
+  border: solid 3rpx rgb(197, 174, 135); */
 }
 
 .ognzLogoStyle text {
@@ -101,20 +99,21 @@
 }
 
 .headView view {
-  width: 80%;
-  height: 80%;
-  font-size: 30rpx;
+  width: 90%;
+  height: 90%;
+  font-size: 26rpx;
   color: white;
-  line-height: 60rpx;
+  line-height: 50rpx;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   flex-direction: column;
 }
 
 .titleViewTextStyle {
   color: #799fed;
-  font-size: 36rpx;
+  font-size: 26rpx;
   font-weight: bold;
 }
 
@@ -338,3 +337,4 @@
 button::after {
   border: none;
 }
+

@@ -14,6 +14,10 @@
     "pages/zouzhe/zzContent/zzContent",
     "pages/promote/promote",
     "pages/sjb/sjbHome/sjb_home",
+    "pages/test/testHome/testHome",
+    "pages/test/testGuize/testGuize",
+    "pages/test/testContent/testContent",
+    "pages/test/answerResults/answerResults",
     "pages/logs/logs"
   ],
 

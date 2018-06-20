@@ -22,7 +22,7 @@
       <view>
         <text>猜中冠军有机会获得<text class='titleViewTextStyle'>{{ognz_name}}</text>提供的
         <text class='titleViewTextStyle'>{{allData.body.rewardText}}</text></text>
-        <text style='color: #D3E045; font-size:24rpx; font-weight: bold; margin-top: 15rpx;' bindtap='showDetails'>查看活动详情</text>
+        <text style='color: #D3E045; font-size:26rpx; font-weight: bold; margin-top: 10rpx;' bindtap='showDetails'>查看活动详情</text>
       </view>
     </view>
     <view class='contentViewStyle'>
@@ -36,7 +36,7 @@
                 <text wx:if='{{selectId == item.score}}' style='color:#E1D3A0'>{{item.name}}</text>
                 <text wx:else style='color:white'>{{item.name}}</text>
                 <text style='color:white;top:134rpx;font-size: 18rpx;'>已有{{item.score}}人选择</text>
-                <view wx:if='{{selectId == index && hideName == ""}}'>
+                <view wx:if='{{selectId == index }}'>
                   <image mode='scaleToFill' src="http://pic.ejiarens.com/wx/sjb_meng.png" />
                 </view>
                 <view wx:if='{{hideName == item.name}}'>

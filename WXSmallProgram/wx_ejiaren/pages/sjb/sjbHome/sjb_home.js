@@ -38,11 +38,11 @@ Page({
       if (options.id && res) {
         //获取用户是否已经投票
         that.getUserOpenId((result, res) => {
-          if (result) {
-            that.loadItems(options.id);
-          } else {
-            console.log(res)
-          }
+          // if (result) {
+          //   that.loadItems(options.id);
+          // } else {
+          //   console.log(res)
+          // }
         });
 
         that.getDataById(options.id, (res) => {
@@ -100,21 +100,8 @@ Page({
   },
 
   selectItem: function (event) {
-
-
-
-    if (this.data.hideName != '') {
-      this.showAlert('啊哦，您已经选择了夺冠球队，要从一而终哦!\r\n* 一个账号只能参与一次活动');
-      return;
-    }
-
     let index = parseInt(event.currentTarget.id);
     console.log('index:' + index + ',selectId:' + this.data.selectId)
-    if (index == this.data.selectId) {
-      //this.showAlert('啊哦，您已经选择了夺冠球队，要从一而终哦 \r\n !* 一个账号只能参与一次活动');
-      return;
-    }
-
     var items = this.data.allData.body.teams[index];
     let formId = event.detail.formId;
     console.log(items.name + ' : ' + formId);
@@ -126,6 +113,7 @@ Page({
     console.log(this.data.selectId);
 
     if (this.data.selectId >= 0) {
+      console.log(this.data.haiBaoName);
       this.submitData();
       this.getHaibao();
     } else {
@@ -187,12 +175,13 @@ Page({
 
 
   submitData: function () {
-
     console.log(this.data.userInfo);
     var that = this;
+    var nick = this.data.userInfo.nickName;
+    nick = that.filteremoji(nick);
     var sendData = {
       activityid: this.data.allData.id,
-      nickname: this.data.userInfo.nickName,
+      nickname: nick,
       avar: this.data.userInfo.avatarUrl,
       openId: that.data.openId,
       body: {
@@ -208,7 +197,7 @@ Page({
         if (res.data.result) {
           var item = res.data.t.activity;
           var itmeName = that.data.selectItem.name;
-          that.setData({ allData: item, hideName: itmeName, selectId: -1 });
+          that.setData({ allData: item, hideName: '', });
         } else {
 
         }
@@ -289,7 +278,6 @@ Page({
       that.setData({ loadingHidden: true }, () => {
         that.showHaibao();
       });
-      return;
     }
     var userInfo = this.data.userInfo;
     var nickname = userInfo.nickName;
@@ -396,7 +384,7 @@ Page({
         "info": codeUrl
       }],
     }
-    console.log(sendInfo);
+    console.log(sendInfo.backgroundUrl);
 
 
     network.POST(

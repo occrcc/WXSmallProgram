@@ -1,0 +1,19 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <view >
+    <checkbox-group bindchange="checkboxChange" data-index="{{index}}">
+      <label wx:for="{{showCheckArr}}" class='chekboxLabStyle' wx:key='userInfoListId'>
+        <checkbox value="{{index}}"></checkbox>
+        <text style='margin-left: 8rpx;font-size:30rpx;margin-top: 8rpx;color:rgb(144,144,144)'>{{item}}</text>
+      </label>
+    </checkbox-group>
+  </view>
+  <view class='tousuViewStyle'>
+    <form bindsubmit="tousu" report-submit='true'>
+      <button form-type="submit" class='tousuBtnStyle'>
+        <text>我要投诉</text>
+      </button>
+    </form>
+  </view>
+</view>

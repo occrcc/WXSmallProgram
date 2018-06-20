@@ -1,0 +1,129 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.base_scroll {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+  z-index: 999;
+}
+
+.headView {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  margin-top: 30rpx;
+}
+
+.ognzLogo {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 30rpx;
+  border-radius: 50rpx;
+}
+
+.biaoStyle {
+  flex-direction: row;
+  display: flex;
+  width: 76%;
+  margin-top: 14rpx;
+  
+}
+
+.logoStyle {
+  width: 20%;
+  height: 20%;
+}
+
+.textImgStyle {
+  width: 580rpx;
+  height: 265rpx;
+}
+
+.cententImg {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+.cententImg image{
+  width: 564rpx;
+  height: 120rpx;
+}
+
+.codeImgStyle {
+  width: 100%;
+  height: 250rpx;
+  display: flex;
+  justify-content: center;
+  margin-top: 70rpx;
+  align-items: center;
+}
+
+.codeImgStyle image{
+  width: 250rpx;
+  height: 250rpx;
+}
+
+.footImgStyle {
+  width: 110%;
+  height: 540rpx;
+  position: absolute;
+  bottom: -140rpx;
+  z-index: 0;
+}
+
+.cavasStyle {
+  margin-top: -660rpx;
+  width:140px;
+  height:140px;
+}
+
+.footBtnView {
+  width: 100%;
+  height: 140rpx;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: transparent;
+}
+
+.footBtnView view {
+  width: 40%;
+  height: 80rpx;
+  box-shadow: 8rpx 8rpx 15rpx rgba(66, 58, 27, 1);
+  background: #E86363;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+}
+
+.sharBtnStyle {
+  font-size:30rpx;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  flex-direction: column;
+  line-height: 34rpx;
+  
+}
+
+button::after{
+  border: none;
+}

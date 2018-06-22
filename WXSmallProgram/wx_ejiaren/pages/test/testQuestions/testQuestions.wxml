@@ -1,0 +1,40 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll' scroll-top="{{scrollTop}}">
+    <block wx:for='{{QAArr}}' wx:key='userInfoListId'>
+      <view class='headView'>
+        <view class='logoStyle'>
+          <image class='ognzLogo' src='{{heavar}}'></image>
+        </view>
+        <view class='biaoStyle'>
+          <image class='sanjiao' src='../../../images/test_sanjiao.png'></image>
+          <view class='titleContentView'>
+            <text>{{item.question}}</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if='{{item.answer.length > 0}}' class='headView' style='direction: rtl; margin-bottom: 30rpx; margin-top: 30rpx;' >
+        <view class='logoStyle'>
+          <image class='myLogo' src='{{myavar}}'></image>
+        </view>
+        <view class='biaoStyle'>
+          <image class='sanjiao' src='../../../images/test_sanjiao1.png'></image>
+          <view class='titleContentView' style='margin-right: -10rpx; direction: ltr'>
+            <text>{{item.answer}}</text>
+          </view>
+        </view> 
+      </view>
+    </block>
+  </scroll-view>
+
+  <view wx:if="{{chooseSize}}" animation="{{animationData}}" class='actionSheet'>
+    <block wx:for="{{currentQuestion.items}}" wx:key="{{currentQuestion.id}}">
+      <action-sheet-item wx:if='{{index == selectIndex}}' id='{{index}}' class="actionSheetItem" bindtap="selectQuestion" style='background:#6495ED;color:white'>{{item}}</action-sheet-item>
+      <action-sheet-item wx:else class="actionSheetItem" id='{{index}}' bindtap="selectQuestion" style='background:#FFFAE9'>{{item}}</action-sheet-item>
+    </block>
+  </view>
+
+
+  <image class='footImgStyle' src='http://pic.ejiarens.com/wx/test_foot.png'></image>
+</view>

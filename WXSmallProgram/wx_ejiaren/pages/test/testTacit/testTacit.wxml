@@ -1,0 +1,50 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <view class='headView'>
+    <view class='headContentView'>
+      <view class='touxiang'>
+        <view style=''></view>
+        <image src='{{myavar}}'></image>
+        <image src='../../../images/vs.png' style='width: 96rpx;height: 58rpx;border-radius:0;border:none'></image>
+        <image src='{{heavar}}' style='border: solid 10rpx #E85E5E;'></image>
+        <view style=''></view>
+      </view>
+      <image src='http://pic.ejiarens.com/wx/test_pipeidu.png' style='width: 105rpx;height: 34rpx;margin-top: 20rpx;' />
+      <text style='color:#E82929;font-size:72rpx;font-weight: bold;margin-top: 30rpx;'>100%</text>
+      <view class='jinduView'>
+        <image src='../../../images/test_jindu.png' />
+      </view>
+    </view>
+  </view>
+  <view class='topViewStyle'>
+    <view class='phTitleStyle'>
+      <text>XXX 的好友默契榜Top10</text>
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation='true' class='topScrollView'>
+      <block wx:for='{{topItem}}' wx:key='userInfoListId'>
+        <view class='topItemViewSteyle'>
+          <image src='{{item.image}}' style='width: 52rpx; height: 62rpx;'></image>
+          <image src='{{item.avarUrl}}' style='width: 52rpx; height: 62rpx;border-radius: 31rpx;margin-left: 80rpx;'></image>
+          <text style='margin-left: 140rpx;'>{{item.nikeName}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='footViewStyle'>
+    <view class='leftView'>
+      <form bindsubmit="showAnswer" report-submit='true'>
+        <button form-type="submit" class='showAnswerBtnStyle'>
+          <text>查看TA的答案</text>
+        </button>
+      </form>
+    </view>
+    <view class='leftView' style='background:#5796FE'>
+      <form bindsubmit="player" report-submit='true'>
+        <button form-type="submit" class='showAnswerBtnStyle'>
+          <text>我要出题</text>
+        </button>
+      </form>
+    </view>
+  </view>
+</view>

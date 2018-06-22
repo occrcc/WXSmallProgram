@@ -1,0 +1,108 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.base_scroll {
+  position: fixed;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  z-index: 999;
+  
+}
+
+.headView {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  margin-top: 50rpx;
+  
+}
+
+
+.ognzLogo {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 30rpx;
+  border-radius: 50rpx;
+}
+
+.myLogo {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 30rpx;
+  border-radius: 50rpx;
+   
+}
+
+
+.logoStyle {
+  width: 20%;
+  height: 20%;
+}
+
+
+.biaoStyle {
+  flex-direction: row;
+  display: flex;
+  width: 76%;
+  margin-top: 14rpx;
+}
+
+
+
+.sanjiao {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.titleContentView {
+  font-size:30rpx;
+  color: #1F1F1F;
+  background: white;
+  padding: 20rpx;
+  line-height:50rpx;
+  border-radius:10rpx;
+  margin-left: -10rpx;
+}
+
+
+.footImgStyle {
+  width: 100%;
+  height: 220rpx;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+}
+
+.actionSheet {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60rpx;
+  width: 100%;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  z-index: 999;
+}
+
+.actionSheetItem {
+  width: 80%;
+  background: #FFFAE9;
+  padding: 30rpx;
+  font-size:30rpx;
+  color: #1F1F1F;
+  line-height:44rpx;
+  border-radius:10rpx;
+  box-shadow: 8rpx 8rpx 15rpx rgba(66, 58, 27, 1);
+  margin-top: 36rpx;
+}
+

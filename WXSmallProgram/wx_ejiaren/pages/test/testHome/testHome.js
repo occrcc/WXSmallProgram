@@ -187,9 +187,18 @@ Page({
   },
 
   pushContent:function(){
+    this.tongji(true);
+    // wx.navigateTo({
+    //   url: '../testQuestions/testQuestions?id=' + 470,
+    // })
+
     wx.navigateTo({
-      url: '../testContent/testContent',
+      url: '../testTacit/testTacit?id=' + 470,
     })
+   
+    // wx.navigateTo({
+    //   url: '../testContent/testContent',
+    // })
   },
 
   makeRequest: function (successcallback) {
@@ -200,6 +209,7 @@ Page({
         success: function (res) {
           if (res.data.total > 0) {
             that.setData({
+              allData:res.data.list[0],
               activice: true,
             })
           } else {
@@ -215,6 +225,25 @@ Page({
 
   onLoad: function () {
     this.makeRequest();
+  },
+
+  tongji: function (isonLoad) {
+    var id = this.data.allData.id;
+    var field = isonLoad ? 'enjoyPeople' : 'sharePeople';
+    network.GET({
+      params: {},
+      url: 'ognz/addupActivityV2Count?id=' + id + '&field=' + field,
+      success: function (res) {
+        console.log('统计成功：', res.data);
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '请检查网络连接',
+          content: JSON.stringify(error),
+          showCancel: false,
+        })
+      },
+    })
   },
 
 })

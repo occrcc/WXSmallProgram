@@ -15,9 +15,13 @@ Page({
     selectIndex:-1,
     answerLetter: ['A、', 'B、', 'C、', 'D、', 'E、','F、'],
     pickHide:false,
+    allData:{},
+    openId:'',
   },
 
   onShow: function () {
+    this.loadUserInfo();
+    this.getUserOpenId();
     this.setData({
       ognzIcon: 'http://pic.ejiarens.com/wx/ognz_' + app.globalData.ognz_id + '.png'
     })
@@ -103,7 +107,8 @@ Page({
       if (res) {
         var questions = res.body.question;
         this.setData({
-          question: questions
+          question: questions,
+          allData:res,
         })
         var sequestion = [];
         var selectQuestion = questions.filter(v => !v.spec);
@@ -125,11 +130,46 @@ Page({
   },
 
   submitAnswers:function(){
+
     console.log(this.data.selectAnswer);
-    wx.redirectTo({
-      url: '../answerResults/answerResults',
+    var that = this;
+    var nick = this.data.userInfo.nickName;
+    nick = that.filteremoji(nick);
+    var sendData = {
+      activityid: this.data.allData.id,
+      nickname: nick,
+      avar: this.data.userInfo.avatarUrl,
+      openId: that.data.openId,
+      body: {
+        answers: this.data.selectAnswer,
+      }
+    }
+    console.log('sendData', sendData);
+    network.POST({
+      params: sendData,
+      header: { 'content-type': 'application/json' },
+      url: 'ognz/v2/activityEnjoy',
+      success: function (res) {
+        if (res.data.result) {
+          console.log('请求成功：',res.data);
+          wx.redirectTo({
+            url: '../answerResults/answerResults?id=' + res.data.t.result.id,
+          })
+        } else {
+          that.showAlert();
+        }
+      },
+      fail: function (err) {
+        console.log('请求失败:  ', err)
+      },
     })
+
+
+
+    
   },
+
+
   makeRequest: function (successcallback) {
     var that = this;
     network.GET(
@@ -154,7 +194,74 @@ Page({
       array[j] = temp;
     }
     return array;
-  }
+  },
+
+  filteremoji: function (emojireg) {
+    var ranges = [
+      '\ud83c[\udf00-\udfff]',
+      '\ud83d[\udc00-\ude4f]',
+      '\ud83d[\ude80-\udeff]'
+    ];
+    emojireg = emojireg.replace(new RegExp(ranges.join('|'), 'g'), '');
+    return emojireg;
+  },
+
+  loadUserInfo: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        that.setData({
+          userInfo: res.data,
+        })
+      },
+      fail: function (error) {
+      }
+    })
+  },
+
+  getUserOpenId: function () {
+    var self = this
+    if (app.globalData.openId) {
+      self.setData({ openId: app.globalData.openId });
+    } else {
+      wx.login({
+        success: function (data) {
+          console.log(data);
+          network.GET(
+            {
+              params: {},
+              url: 'wxmppay/jscode2session?appid=' + app.globalData.app_id + '&secret=' + app.globalData.app_secret + '&js_code=' + data.code,
+              success: function (res) {
+                app.globalData.openId = res.data.openid;
+                self.setData({ openId: res.data.openid });
+              },
+              fail: function (res) {
+              },
+            })
+        },
+        fail: function (err) {
+          console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
+          callback(false, err)
+        }
+      })
+    }
+  },
+  
+  showAlert: function () {
+    wx.showToast({
+      title: '网络不正常，请稍后再试',
+      icon: 'loading',  //图标，支持"success"、"loading"  
+      image: '../../../images/icon-error.png',  //自定义图标的本地路径，image 的优先级高于 icon  
+      duration: 1000, //提示的延迟时间，单位毫秒，默认：1500  
+      mask: true,  //是否显示透明蒙层，防止触摸穿透，默认：false  
+      success: function () { }, //接口调用成功的回调函数  
+      fail: function () { },  //接口调用失败的回调函数  
+      complete: function () { } //接口调用结束的回调函数  
+    })
+  },
+  
+
 
 
 })

@@ -1,0 +1,142 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.headView {
+  width: 80%;
+  height: 526rpx;
+  background: #423A1B;
+  border-radius:10rpx;
+  margin-top: 63rpx;
+}
+
+.headContentView {
+  width: 100%;
+  height: 526rpx;
+  background: white;
+  border-radius:10rpx;
+  margin-top: -10rpx;
+  margin-left: -10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.touxiang {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 28rpx;
+  
+  
+}
+
+.touxiang image {
+  width: 120rpx;
+  height: 120rpx;
+  border: solid 10rpx #33A7FA;
+  border-radius: 70rpx;
+  
+
+  /* width: 96rpx;
+  height: 58rpx; */
+}
+
+.jinduView {
+  width: 86%;
+  height: 50rpx; 
+  border-radius: 35rpx;
+  background: rgb(48, 80, 217);
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+
+}
+
+.jinduView image{
+  width: 20%;
+  height: 100%;
+  border-radius: 25rpx;
+}
+
+.topViewStyle {
+  width: 100%;
+  top: 630rpx;
+  bottom: 90rpx;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phTitleStyle {
+  color: #242424;
+  font-size:30rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+  height: 20%;
+
+}
+.topScrollView {
+  margin: 10rpx;
+  width: 100%;
+  height: 80%;
+
+}
+
+.topItemViewSteyle {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  font-weight: bold;
+  padding-left: 50rpx;
+  margin-top: 25rpx;
+  
+  
+}
+
+.footViewStyle {
+  width: 100%;
+  height: 90rpx;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.leftView {
+  width: 50%;
+  height: 100%;
+  background: #E86363;
+}
+
+.showAnswerBtnStyle {
+  width: 100%;
+  height: 100%;
+  font-size:30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  background: transparent;
+}
+
+
+button::after{
+  
+  border: none;
+}

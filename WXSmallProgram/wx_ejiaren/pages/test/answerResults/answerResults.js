@@ -8,6 +8,7 @@ Page({
     ognzIcon: '',
     userInfo: null,
     captchaImage:'',
+    resultid:'',
   },
 
   onShow: function () {
@@ -16,9 +17,11 @@ Page({
     })
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
+    console.log(options.id);
+    this.setData({ resultid: options.id})
     this.loadUserInfo(res=>{
-      this.getQrCode(90);
+      this.getQrCode(options.id);
       this.setData({
         ognzIcon: res.avatarUrl,
       })
@@ -45,7 +48,7 @@ Page({
   getQrCode: function (itemId) {
     var that = this;
     var downUrl = '';
-    downUrl = "https://wxapi.ejiarens.com/wxmppay/createQcode?appid=" + app.globalData.app_id + "&secret=" + app.globalData.app_secret + "&path=" + encodeURI('pages/signInput/signInput?id=' + itemId);
+    downUrl = "https://wxapi.ejiarens.com/wxmppay/createQcode?appid=" + app.globalData.app_id + "&secret=" + app.globalData.app_secret + "&is_hyaline=true" + "&path=" + encodeURI('pages/test/testQuestions/testQuestions?id=' + itemId);
 
     console.log(downUrl);
 
@@ -88,6 +91,10 @@ Page({
       }
     })
   },
+
+  sharData:function(){
+    
+  }
   
  
 

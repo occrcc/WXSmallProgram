@@ -18,6 +18,8 @@
     "pages/test/testGuize/testGuize",
     "pages/test/testContent/testContent",
     "pages/test/answerResults/answerResults",
+    "pages/test/testQuestions/testQuestions",
+    "pages/test/testTacit/testTacit",
     "pages/logs/logs"
   ],
 

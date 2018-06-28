@@ -28,12 +28,32 @@ App({
     isIphoneX: false,
     userInfo: null,
     hasLogin: false,
-
     ognz_id: '275',
     app_id: 'wxdcd3e1f2d5c97b8f',
     app_secret: 'a0d4fc5d1b7d8195086fa0c4c46e5954',
     ognz_name:'逸家人科技',
     openId:'',
+  },
+
+  postFormID: function (openId, fromId) {
+    var that = this;
+    if (!openId || !fromId) return;
+    var senderInfo = {
+      openId: openId + '',
+      fromId: fromId + '',
+      ognzId: parseInt(that.globalData.ognz_id),
+    }
+    console.log('senderInfo', senderInfo);
+    network.POST({
+      params: senderInfo,
+      header: { 'content-type': 'application/json' },
+      url: 'wxmp/saveFormId',
+      success: function (res) {
+        console.log('saveFormId', res.data);
+      },
+      fail: function (res) {
+      },
+    })
   },
 
   onShow: function () {

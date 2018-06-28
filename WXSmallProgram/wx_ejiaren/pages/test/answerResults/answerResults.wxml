@@ -2,7 +2,7 @@
 
 <view class="baseContainer">
   <canvas canvas-id="my_Canvas" class='cavasStyle' />
-  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll'>
+  <scroll-view  scroll-with-animation='true' class='base_scroll'>
     <view class='headView'>
       <view class='logoStyle'>
         <image class='ognzLogo' src='{{ognzIcon}}'></image>
@@ -23,18 +23,38 @@
   <view class='footBtnView'>
     <view>
       <form bindsubmit="sharData" report-submit='true'>
-        <button form-type="submit" class='sharBtnStyle'>
+        <button form-type="submit" open-type="share" class='sharBtnStyle' bindtap='tongji'>
           <text >邀请好友来答题</text>
         </button>
       </form>
     </view>
     <view style='background:#508DF2'>
-      <form bindsubmit="savePic" report-submit='true'>
-        <button form-type="submit" class='sharBtnStyle'>
-          <text style='margin-top: 4rpx'>保存照片</text>
+      <form bindsubmit="showHaibao" report-submit='true'>
+        <button form-type="submit" class='sharBtnStyle' >
+          <text style='margin-top: 4rpx'>保存图片</text>
           <text style='font-size:18rpx;'>（分享朋友圈）</text>
         </button>
       </form>
     </view>
   </view>
+  
+  <block wx:if="{{baseTipViewShow}}">
+    <view class='tipView' bindtap='selectBaseImage'>
+      <view class='showQView'>
+        <image mode='aspectFit' class='tipImage' src='{{baseImgUrl}}' bindtap='selectBaseImage'></image>
+        <view class='saveImgView'>
+          <button class='saveBtnView' open-type="share" style='margin-right: 40rpx; ' bindtap='tongji'>
+            推荐给好友
+          </button>
+          <view class='saveBtnView' bindtap='saveImage'>
+            <text>保存到相册</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
 </view>

@@ -1,7 +1,7 @@
 <import src="../../zouzhe/zzFoot/zzFoot.wxml" />
 
 <view class="baseContainer">
-  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll' scroll-top="{{scrollTop}}">
+  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll' scroll-top="{{scrollTop}}" bindscroll="onPageScroll">
     <block wx:for='{{QAArr}}' wx:key='userInfoListId'>
       <view class='headView'>
         <view class='logoStyle'>
@@ -14,7 +14,7 @@
           </view>
         </view>
       </view>
-      <view wx:if='{{item.answer.length > 0}}' class='headView' style='direction: rtl; margin-bottom: 30rpx; margin-top: 30rpx;' >
+      <view wx:if='{{item.answer.length > 0}}' class='headView' style='direction: rtl; margin-bottom: 30rpx; margin-top: 30rpx;'>
         <view class='logoStyle'>
           <image class='myLogo' src='{{myavar}}'></image>
         </view>
@@ -23,18 +23,39 @@
           <view class='titleContentView' style='margin-right: -10rpx; direction: ltr'>
             <text>{{item.answer}}</text>
           </view>
-        </view> 
+        </view>
       </view>
     </block>
   </scroll-view>
 
   <view wx:if="{{chooseSize}}" animation="{{animationData}}" class='actionSheet'>
+    <image src='http://pic.ejiarens.com/wx/test_choosetitle.png' class='chooseImgStyle'></image>
     <block wx:for="{{currentQuestion.items}}" wx:key="{{currentQuestion.id}}">
-      <action-sheet-item wx:if='{{index == selectIndex}}' id='{{index}}' class="actionSheetItem" bindtap="selectQuestion" style='background:#6495ED;color:white'>{{item}}</action-sheet-item>
-      <action-sheet-item wx:else class="actionSheetItem" id='{{index}}' bindtap="selectQuestion" style='background:#FFFAE9'>{{item}}</action-sheet-item>
+      <action-sheet-item wx:if='{{index == selectIndex}}' id='{{index}}' class="actionSheetItem" bindtap="selectQuestion" style='background:#6495ED;color:white'>{{answerLetter[index]}}{{item}}</action-sheet-item>
+      <action-sheet-item wx:else class="actionSheetItem" id='{{index}}' bindtap="selectQuestion" style='background:#FFFAE9'>{{answerLetter[index]}}{{item}}</action-sheet-item>
     </block>
   </view>
-
-
   <image class='footImgStyle' src='http://pic.ejiarens.com/wx/test_foot.png'></image>
+
+  <view hidden="{{hidden}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='modeTitleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 90rpx; display: flex;justify-content: center;align-items: center;'>
+        <image src='{{ognzIcon}}' style='width: 46rpx;height: 46rpx;'></image>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; '>拒绝</button>
+        <button class='btnItem' style='color:green' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
+    </view>
+  </view>
+
 </view>

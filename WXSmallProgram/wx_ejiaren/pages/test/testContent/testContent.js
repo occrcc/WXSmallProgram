@@ -17,6 +17,9 @@ Page({
     pickHide:false,
     allData:{},
     openId:'',
+    showIndex:1,
+
+    loading:true,
   },
 
   onShow: function () {
@@ -28,6 +31,8 @@ Page({
   },
 
   next: function (e) {
+
+
     if (this.data.selectIndex >= 0) {
       return;
     }
@@ -37,21 +42,24 @@ Page({
     var cur = this.data.currentQuestion.items[chooseIndex];
     var currentAnswer = this.data.currentQuestion;
     var index = this.data.index;
-    index ++;
-    this.setData({ index: index, selectIndex: chooseIndex});
-    var answer = {
-      id: currentAnswer.id,
-      title: currentAnswer.title,
-      items: currentAnswer.items,
-      answer: cur,
+    if (index<=4){
+      index++;
+      var showIndex = this.data.showIndex;
+      showIndex++;
+      this.setData({ index: index, selectIndex: chooseIndex });
+      var answer = {
+        id: currentAnswer.id,
+        title: currentAnswer.title,
+        items: currentAnswer.items,
+        answer: cur,
+      }
+      var selectAnswer = this.data.selectAnswer;
+      selectAnswer.push(answer);
+      this.setData({ selectAnswer: selectAnswer, });
     }
-    var selectAnswer = this.data.selectAnswer;
-    selectAnswer.push(answer);
-    this.setData({ selectAnswer: selectAnswer, });
 
     if (this.data.index >= 5){
       console.log('你已经做完5道题了');
-      this.setData({pickHide:true})
       this.submitAnswers();
       return;
     }
@@ -61,11 +69,16 @@ Page({
       that.setData({
         selectIndex: -1,
         currentQuestion: quest,
+        showIndex: showIndex,
       })
     }, 500);
   },
 
   pickQuestion: function (e) {
+
+    console.log('换一换', e.detail.formId);
+    app.postFormID(this.data.openId, e.detail.formId);
+
     this.setData({ selectIndex: -1});
     console.log(e.target.dataset.id);
     var indexItemId = e.target.dataset.id;
@@ -122,7 +135,8 @@ Page({
 
         this.setData({
           selectQuestion: sequestion,
-          currentQuestion: sequestion[0]
+          currentQuestion: sequestion[0],
+          loading:false
         })
         console.log('当前问题', this.data.currentQuestion);
       }
@@ -161,6 +175,8 @@ Page({
       },
       fail: function (err) {
         console.log('请求失败:  ', err)
+        that.setData({ selectIndex: -1 })
+        that.showAlert();
       },
     })
 
@@ -250,10 +266,10 @@ Page({
   
   showAlert: function () {
     wx.showToast({
-      title: '网络不正常，请稍后再试',
+      title: '网络错误',
       icon: 'loading',  //图标，支持"success"、"loading"  
       image: '../../../images/icon-error.png',  //自定义图标的本地路径，image 的优先级高于 icon  
-      duration: 1000, //提示的延迟时间，单位毫秒，默认：1500  
+      duration: 2000, //提示的延迟时间，单位毫秒，默认：1500  
       mask: true,  //是否显示透明蒙层，防止触摸穿透，默认：false  
       success: function () { }, //接口调用成功的回调函数  
       fail: function () { },  //接口调用失败的回调函数  

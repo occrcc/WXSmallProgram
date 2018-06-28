@@ -4,7 +4,8 @@ var network = require('../../../utils/network.js');
 var shipAnimation = null;
 var titleAnimation = null;
 var startTitleAnimation = null;
-
+var st1;
+var st2;
 Page({
   data: {
     animationData: {},
@@ -16,6 +17,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo:null,
     activice:true,
+    allData:{},
+    openId:'',
+    shareData: {},
+  },
+
+  onShareAppMessage: function () {
+    return this.data.shareData
   },
 
   onReady: function () {
@@ -33,14 +41,13 @@ Page({
     this.setData({
       titleAnimationData: animation.export()
     })
-
     //--------------------------------------------------------------------
+  },
 
-
-
+  setStartAnimation:function(){
     var animation1 = wx.createAnimation({
       duration: 1000,
-      timingFunction: 'ease-in',
+      timingFunction: 'ease',
     })
     startTitleAnimation = animation1
     animation1.rotate(5).step()
@@ -48,19 +55,20 @@ Page({
       startTitleAnimationData: animation1.export()
     })
     var n = true;
-    setInterval(function () {
+    st1 = setInterval(function () {
       n = !n;
       if (n) {
         animation1.rotate(-10).step()
       } else animation1.rotate(10).step()
       this.setData({
-        startTitleAnimationData: startTitleAnimation.export()
+        startTitleAnimationData: animation1.export()
       })
     }.bind(this), 500)
   },
 
   onShow: function () {
-  
+    this.getUserOpenId((result, res) => { });
+    this.setStartAnimation();
     var animation = wx.createAnimation({
       duration: 5000,
       timingFunction: 'linear',
@@ -72,8 +80,11 @@ Page({
       shipUrl: 'http://pic.ejiarens.com/wx/test_ship_' + app.globalData.ognz_id + '.png',
       ognzIcon: 'http://pic.ejiarens.com/wx/ognz_' + app.globalData.ognz_id + '.png'
     })
+
+    console.log('shipUrl', this.data.shipUrl);
+
     var n = true;
-    setInterval(function () {
+    st2 = setInterval(function () {
       n = !n;
       if (n) {
         animation.translateY(16).step()
@@ -86,6 +97,7 @@ Page({
 
   tousu: function (e) {
     console.log('投诉', e.detail.formId);
+    app.postFormID(this.data.openId, e.detail.formId);
     wx.navigateTo({
       url: '../testGuize/testGuize'
     })
@@ -93,6 +105,7 @@ Page({
 
   guize: function (e) {
     console.log('规则', e.detail.formId);
+    app.postFormID(this.data.openId, e.detail.formId);
     wx.showModal({
       showCancel: false,
       title: '玩法规则',
@@ -102,6 +115,10 @@ Page({
 
   showResults: function (e) {
     console.log('查看结果', e.detail.formId);
+    app.postFormID(this.data.openId, e.detail.formId);
+    wx.navigateTo({
+      url: '../testTopList/testTopList?id=' + this.data.allData.id
+    })
   },
 
   showAlert: function () {
@@ -117,8 +134,16 @@ Page({
     })
   },
 
+  onHide:function(){
+    console.log('onHide');
+    st1 && clearInterval(st1)
+    st2 && clearInterval(st2)
+  },
+
   startBtn: function (e) {
     console.log('开始测试', e.detail.formId);
+    app.postFormID(this.data.openId, e.detail.formId);
+
     if (!this.data.activice){
       this.showAlert();
       return;
@@ -188,13 +213,17 @@ Page({
 
   pushContent:function(){
     this.tongji(true);
+    wx.navigateTo({
+      url: '../testQuestions/testQuestions?id=' + 636,
+    })
+
     // wx.navigateTo({
-    //   url: '../testQuestions/testQuestions?id=' + 470,
+    //   url: '../testTacit/testTacit?id=' + 470 + '&percentage=' + 60,
     // })
 
-    wx.navigateTo({
-      url: '../testTacit/testTacit?id=' + 470,
-    })
+    // wx.navigateTo({
+    //   url: '../testTopList/testTopList?id=' + this.data.allData.id
+    // })
    
     // wx.navigateTo({
     //   url: '../testContent/testContent',
@@ -225,6 +254,13 @@ Page({
 
   onLoad: function () {
     this.makeRequest();
+    this.setData({
+      shareData: {
+        title: '有人@你来进行友情默契测试',
+        imageUrl: 'http://pic.ejiarens.com/wx/test_sharhome.png',
+        path: '/pages/test/testHome/testHome',
+      }
+    })
   },
 
   tongji: function (isonLoad) {
@@ -245,5 +281,39 @@ Page({
       },
     })
   },
+
+  getUserOpenId: function (callback) {
+    var self = this
+    if (app.globalData.openId) {
+      self.setData({
+        openId: app.globalData.openId
+      });
+      callback(true, app.globalData.openId)
+    } else {
+      wx.login({
+        success: function (data) {
+          console.log(data);
+          network.GET({
+            params: {},
+            url: 'wxmppay/jscode2session?appid=' + app.globalData.app_id + '&secret=' + app.globalData.app_secret + '&js_code=' + data.code,
+            success: function (res) {
+              app.globalData.openId = res.data.openid;
+              self.setData({
+                openId: res.data.openid
+              });
+              callback(true, res.data.openid);
+            },
+            fail: function (res) { },
+          })
+        },
+        fail: function (err) {
+          console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
+          callback(false, err)
+        }
+      })
+    }
+  },
+
+  
 
 })

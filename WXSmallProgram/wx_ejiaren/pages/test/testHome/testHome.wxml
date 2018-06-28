@@ -6,7 +6,7 @@
 
   <image class='mindImgStyle' src='http://pic.ejiarens.com/wx/test_mind.png'></image>
   <image class='waterImgStyle' src='http://pic.ejiarens.com/wx/test_water.png'></image>
-  <image animation="{{animationData}}" class='shipImgStyle' src='{{shipUrl}}'></image>
+  <image animation="{{animationData}}" class='shipImgStyle' src='{{shipUrl}}'></image> 
   <image class='shipFootStyle' src='http://pic.ejiarens.com/wx/test_ship_foot.png'></image>
 
   <view class='buttonStyle'>
@@ -18,7 +18,7 @@
     </form>
   </view>
 
-  <text class='noticeStyle'>已经有24人参与体验</text>
+  <text class='noticeStyle'>已经有{{allData.enjoyPeople}}人参与体验</text>
   <view class='showResults'>
     <form bindsubmit="showResults" report-submit='true'>
       <button form-type="submit">
@@ -46,8 +46,6 @@
       </button>
     </form>
   </view>
-
-
 
   <view hidden="{{hidden}}" class='modelView'>
     <view class='modelCenterView'>

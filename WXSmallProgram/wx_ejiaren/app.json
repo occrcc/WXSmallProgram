@@ -20,6 +20,8 @@
     "pages/test/answerResults/answerResults",
     "pages/test/testQuestions/testQuestions",
     "pages/test/testTacit/testTacit",
+    "pages/test/testTopList/testTopList",
+    "pages/test/testOtherAnswers/testOtherAnswers",
     "pages/logs/logs"
   ],
 

@@ -1,0 +1,64 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.headView {
+  width: 80%;
+  height: 86%;
+  background: #423A1B;
+  border-radius:10rpx;
+  margin-top: 100rpx;
+}
+
+.headContentView {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius:10rpx;
+  margin-top: -10rpx;
+  margin-left: -10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.myAvatarStyle {
+  width: 140rpx;
+  height: 140rpx;
+  border: 12rpx solid #fedb57;
+  border-radius: 82rpx;
+  margin-top:  -76rpx;
+}
+
+.topScrollView {
+  width: 100%;
+  height: 88%;
+  margin-top: 30rpx;
+}
+
+.topItemViewSteyle {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  font-weight: bold;
+  padding-left: 50rpx;
+  margin-top: 25rpx;
+}
+
+.erroView {
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #866E3B;
+  line-height: 55rpx;
+  text-align: center;
+}

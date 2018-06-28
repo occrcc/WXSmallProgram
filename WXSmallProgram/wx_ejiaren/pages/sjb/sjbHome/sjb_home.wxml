@@ -79,8 +79,6 @@
     <view style='width: 100%; height: 120rpx;top: 240rpx; position: relative;'>
       <template is="foot" />
     </view>
-
-
   </view>
   <block wx:if="{{baseTipViewShow}}">
     <view class='tipView' bindtap='selectBaseImage'>

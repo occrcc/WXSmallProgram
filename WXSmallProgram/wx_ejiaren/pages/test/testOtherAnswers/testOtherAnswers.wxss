@@ -1,0 +1,55 @@
+.baseContainer {
+  width: 100%;
+  height: 100%;
+  background: #fedb57;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.base_scroll {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionViewStyle {
+  margin-top: 60rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(94, 70, 19);
+  font-size: 30rpx;
+  
+}
+.sectionViewStyle text {
+  margin-left: 30rpx;
+  margin-right: 90rpx;
+}
+
+.answerLineItem{
+  width: 86%;
+  background: white;
+  border-radius: 10rpx;
+  margin-top: 15rpx;
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.answerLineItem image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 15rpx;
+}
+
+.answerLineItem text {
+  margin-right: 20rpx;
+  width: 80%;
+}

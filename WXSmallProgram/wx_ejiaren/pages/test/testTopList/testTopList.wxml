@@ -1,0 +1,32 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <view class='headView'>
+    <view class='headContentView'>
+      <image src='{{userInfo.avatarUrl}}' class='myAvatarStyle'></image>
+      <scroll-view scroll-y="true" scroll-with-animation='true' class='topScrollView'>
+        <block wx:if='{{topList.length > 0}}' wx:for='{{topList}}' wx:key='userInfoListId'>
+          <view class='topItemViewSteyle'>
+            <block wx:if='{{index < 3}}'>
+              <image src='../../../images/test_{{index +1}}.png' style='width: 52rpx; height: 62rpx;'></image>
+            </block>
+            <block wx:else>
+              <view style='width: 52rpx; height: 62rpx;text-align: center;font-size: 30rpx;display: flex;justify-content: center;align-items: center;'>
+                <text>{{index + 1}}</text>
+              </view>
+            </block>
+            <image src='{{item.avar}}' style='width: 62rpx; height: 62rpx;border-radius: 31rpx;margin-left: 80rpx;'></image>
+            <text style='margin-left: 60rpx;'>{{item.nickname}}</text>
+            <text style='position: absolute;right: 50rpx;'>{{item.score}}%</text>
+          </view>
+        </block>
+        <block wx:if='{{topList.length < 1}}'>
+          <view class='erroView'>
+            <text>赶快找小伙伴测一测你们的友情指数吧！</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+
+</view>

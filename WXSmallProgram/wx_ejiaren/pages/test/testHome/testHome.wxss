@@ -11,7 +11,7 @@
 .headImgStyle {
   width: 640rpx;
   height: 275rpx;
-  margin-top: 78rpx;
+  margin-top: 6rpx;
 }
 
 .titleImgStyle {
@@ -53,15 +53,15 @@
 }
 
 .buttonStyle {
-  width: 342rpx;
+  width: 320rpx;
   height: 77rpx;
   position: absolute;
-  bottom: 350rpx;
+  bottom: 320rpx;
 }
 
 .noticeStyle {
   position: absolute;
-  bottom: 290rpx;
+  bottom: 250rpx;
   font-size: 30rpx;
   color: #2b303a;
 }
@@ -70,7 +70,8 @@
   position: absolute;
   width: 50%;
   height: 60rpx;
-  bottom: 227rpx;
+  bottom: 200rpx;
+  z-index: 999;
 }
 
 .showResults button {

@@ -11,22 +11,34 @@
         <view style=''></view>
       </view>
       <image src='http://pic.ejiarens.com/wx/test_pipeidu.png' style='width: 105rpx;height: 34rpx;margin-top: 20rpx;' />
-      <text style='color:#E82929;font-size:72rpx;font-weight: bold;margin-top: 30rpx;'>100%</text>
+      <text style='color:#E82929;font-size:72rpx;font-weight: bold;margin-top: 30rpx;'>{{percentage}}%</text>
       <view class='jinduView'>
-        <image src='../../../images/test_jindu.png' />
+        <view>
+          <image wx:if="{{chooseSize}}" animation="{{animationData}}" src='../../../images/test_jindu.png' />
+        </view>
       </view>
+      <text style='color:black;font-size:28rpx;font-weight: bold;margin-top: 30rpx;'>{{tips}}</text>
     </view>
   </view>
   <view class='topViewStyle'>
     <view class='phTitleStyle'>
-      <text>XXX 的好友默契榜Top10</text>
+      <text>{{henickname}}的好友默契榜Top10</text>
+      <view />
     </view>
     <scroll-view scroll-y="true" scroll-with-animation='true' class='topScrollView'>
-      <block wx:for='{{topItem}}' wx:key='userInfoListId'>
+      <block wx:for='{{topList}}' wx:key='userInfoListId'>
         <view class='topItemViewSteyle'>
-          <image src='{{item.image}}' style='width: 52rpx; height: 62rpx;'></image>
-          <image src='{{item.avarUrl}}' style='width: 52rpx; height: 62rpx;border-radius: 31rpx;margin-left: 80rpx;'></image>
-          <text style='margin-left: 140rpx;'>{{item.nikeName}}</text>
+           <block wx:if='{{index < 3}}'>
+            <image src='../../../images/test_{{index +1}}.png' style='width: 52rpx; height: 62rpx;'></image>
+          </block> 
+          <block wx:else> 
+            <view style='width: 52rpx; height: 62rpx;text-align: center;font-size: 30rpx;display: flex;justify-content: center;align-items: center;'>
+              <text >{{index + 1}}</text>
+            </view>
+           </block> 
+          <image src='{{item.avar}}' style='width: 62rpx; height: 62rpx;border-radius: 31rpx;margin-left: 80rpx;'></image>
+          <text style='margin-left: 90rpx;'>{{item.nickname}}</text>
+          <text style='position: absolute;right: 15rpx;'>{{item.score}}%</text>
         </view>
       </block>
     </scroll-view>

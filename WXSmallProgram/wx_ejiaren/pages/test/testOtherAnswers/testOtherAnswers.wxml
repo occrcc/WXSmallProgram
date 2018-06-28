@@ -1,0 +1,17 @@
+<import src="../../zouzhe/zzFoot/zzFoot.wxml" />
+
+<view class="baseContainer">
+  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll'>
+    <view wx:for="{{question}}" wx:for-item="question" wx:for-index='i' wx:key='userInfoListId' class='sectionViewStyle'>
+      <text>{{guide[i]}}{{question.title}}</text>
+      <view wx:for="{{question.items}}" wx:key='userInfoListId' style='display: flex;width: 100%;justify-content: center'>
+        <view class='answerLineItem'>
+          <text>{{indexA[index]}}{{item}} {{isCorrect(item,question.answer,question.myAnswer)}}</text>
+          <image wx:if='{{question.answer == item}}' src='http://pic.ejiarens.com/wx/test_dui.png'></image>
+          <image wx:if='{{item==question.myAnswer&&question.myAnswer!=question.answer}}' src='http://pic.ejiarens.com/wx/test_cuo.png'></image>
+        </view>
+      </view>
+    </view>
+    <view style='width: 100%;height: 90rpx;'></view>
+  </scroll-view>
+</view>

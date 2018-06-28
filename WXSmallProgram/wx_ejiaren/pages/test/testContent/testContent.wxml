@@ -1,7 +1,7 @@
 <import src="../../zouzhe/zzFoot/zzFoot.wxml" />
 
 <view class="baseContainer">
-  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll'>
+  <scroll-view hidden='{{loading}}' scroll-y="true" scroll-with-animation='true' class='base_scroll'>
     <view class='headView'>
       <view class='logoStyle'>
         <image class='ognzLogo' src='{{ognzIcon}}'></image>
@@ -9,7 +9,7 @@
       <view class='biaoStyle'>
         <image class='sanjiao' src='../../../images/test_sanjiao.png'></image>
         <view class='titleContentView'>
-          <text>{{currentQuestion.title}}</text>
+          <text>{{showIndex}}/5  {{currentQuestion.title}}</text>
         </view>
       </view>
     </view>
@@ -20,8 +20,10 @@
       </view>
     </view>
 
-    <view hidden='{{pickHide}}' class='huanBtnView'>
-      <button data-id='{{currentQuestion.id}}' bindtap='pickQuestion'>换一换</button>
+    <view  class='huanBtnView'>
+      <form data-id='{{currentQuestion.id}}' bindsubmit="pickQuestion" report-submit='true'>
+        <button form-type="submit" >换一换</button>
+      </form>
     </view>
 
   </scroll-view>

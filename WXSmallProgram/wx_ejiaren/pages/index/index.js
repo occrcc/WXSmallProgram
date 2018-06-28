@@ -12,7 +12,7 @@ Page({
       'http://pic.ejiarens.com/wx/home_list1.png',
       'http://pic.ejiarens.com/wx/home_list2.png',
       'http://pic.ejiarens.com/wx/home_list3.png',
-      'http://pic.ejiarens.com/wx/home_list3.png',
+      'http://pic.ejiarens.com/wx/home_list4.png',
       'http://pic.ejiarens.com/wx/home_list99.png'],
     isOk: false,
     netWork: true,

@@ -7,6 +7,8 @@ Page({
     userInfo: null,
     topList:[],
     openId:'',
+    loadingHidden:true,
+    isHideBack:true,
   },
 
   onShow: function() {
@@ -16,6 +18,9 @@ Page({
   onLoad: function(options) {
     var that = this;
     console.log(options.id);
+
+    that.setData({ loadingHidden: false, isHideBack: options.isHideBack})
+
     this.getUserOpenId((result, res) => { 
       if (!result) return;
       console.log(res);
@@ -24,7 +29,14 @@ Page({
         url: 'ognz/v2/listActivityEnrollEnjoyByActivityIdAndObjId?activityId=' + options.id + '&openId=' + res,
         success: function (requestData) {
           console.log('requestData', requestData.data);
-          that.setData({ topList: requestData.data });
+          var data = requestData.data;
+          for (var i = 0, len = data.length; i < len; i++) {
+            var obj = data[i];
+            if (obj.nickname.length > 6) {
+              obj.nickname = obj.nickname.slice(0,6) + '...' ;
+            }
+          }
+          that.setData({ topList: requestData.data, loadingHidden: true });
         },
         fail: function (res) {
           wx.showModal({
@@ -105,6 +117,11 @@ Page({
     }
   },
 
+  backHome:function(){
+    wx.redirectTo({
+      url: '../testHome/testHome',
+    })
+  },
   
 
 })

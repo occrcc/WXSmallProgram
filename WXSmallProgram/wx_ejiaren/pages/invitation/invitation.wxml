@@ -1,167 +1,189 @@
-
 <import src="../common/foot.wxml" />
 <view class="container">
-    <view class="warp">
-        <image src="http://pic.ejiarens.com/wx/back_img.png"></image>
+  <view class="warp">
+    <image src="http://pic.ejiarens.com/wx/back_img.png"></image>
+  </view>
+  <view wx:if='{{userInfo}}' class='base_scroll'>
+    <canvas canvas-id="radarCanvas" class='canvas' style='position: absolute; top: -1300rpx'></canvas>
+    <view class='section1_view' style='margin-top: 110rpx;'>
+      <image class='teach_img' src="{{teacherInfo.activity.body.teacherThumb}}"></image>
+      <text>{{teacherInfo.activity.body.teacherEngName}}</text>
+      <text>{{teacherInfo.activity.title}}</text>
+      <text style="color:#888888; font-size: 20rpx; font-weight:normal;  font-family:SourceHanSansCN-Regular; margin-bottom: 22rpx;">{{teacherInfo.activity.body.teacherPosition}}</text>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>技能：</text>
+        </view>
+        <view class='lab_items'>
+          <block wx:for="{{labs}}" wx:key="userInfoListId">
+            <view class='lab_item'>
+              <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>主场：</text>
+        </view>
+        <view class='lab_items'>
+          <block wx:for="{{flgs}}" wx:key="userInfoListId">
+            <view class='flg_item'>
+              <image class='flg_icon' src="{{item}}" style="margin-right: 15rpx;"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>标签：</text>
+        </view>
+        <view class='lab_items '>
+          <block wx:for="{{tips}}" wx:key="userInfoListId">
+            <view class='lab_item' style="background: linear-gradient(to right, #3CBAFF , #6BD1F7)">
+              <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>战绩：</text>
+        </view>
+        <view class='lab_items ' style='align-items: center; '>
+          <text style='color: #202020; font-size: 20rpx;'>已打败业内<text style='color: #E05050; font-size: 30rpx; margin: 10rpx;'>{{teacherInfo.activity.body.teacherRank}}%</text>的老师</text>
+        </view>
+      </view>
     </view>
-    <view class='base_scroll'>
-        <canvas canvas-id="radarCanvas" class='canvas' style='position: absolute; top: -1300rpx'></canvas>
-        <view class='section1_view' style='margin-top: 110rpx;'>
-            <image class='teach_img' src="{{teacherInfo.activity.body.teacherThumb}}"></image>
-            <text>{{teacherInfo.activity.body.teacherEngName}}</text>
-            <text>{{teacherInfo.activity.title}}</text>
-            <text style="color:#888888; font-size: 20rpx; font-weight:normal;  font-family:SourceHanSansCN-Regular; margin-bottom: 22rpx;">{{teacherInfo.activity.body.teacherPosition}}</text>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>技能：</text>
-                </view>
-                <view class='lab_items'>
-                    <block wx:for="{{labs}}" wx:key="userInfoListId">
-                        <view class='lab_item'>
-                            <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>主场：</text>
-                </view>
-                <view class='lab_items'>
-                    <block wx:for="{{flgs}}" wx:key="userInfoListId">
-                        <view class='flg_item'>
-                            <image class='flg_icon' src="{{item}}" style="margin-right: 15rpx;"></image>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>标签：</text>
-                </view>
-                <view class='lab_items '>
-                    <block wx:for="{{tips}}" wx:key="userInfoListId">
-                        <view class='lab_item' style="background: linear-gradient(to right, #3CBAFF , #6BD1F7)">
-                            <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>战绩：</text>
-                </view>
-                <view class='lab_items ' style='align-items: center; '>
-                    <text style='color: #202020; font-size: 20rpx;'>已打败业内<text style='color: #E05050; font-size: 30rpx; margin: 10rpx;'>{{teacherInfo.activity.body.teacherRank}}%</text>的老师</text>
-                </view>
-            </view>
+    <view class='section1_view '>
+      <image class='teach_img dafen_img' src="../../images/pingjia.png"></image>
+      <view class="radar">
+        <block wx:if="{{caverImageUrl}}">
+          <image mode="scaleToFill" src="{{caverImageUrl}}" class='canvasImg'></image>
+        </block>
+      </view>
+      <block wx:if="{{showImg}}">
+        <view>
+          <image class='henlan' src="../../images/henlan.png"></image>
         </view>
-        <view class='section1_view '>
-            <image class='teach_img dafen_img' src="../../images/pingjia.png"></image>
-            <view class="radar">
-                <block wx:if="{{caverImageUrl}}">
-                    <image mode="scaleToFill" src="{{caverImageUrl}}" class='canvasImg'></image>
-                </block>
+      </block>
+      <block wx:else>
+        <view style=" display: flex; flex-direction: row; width: 90%; height: 177rpx; justify-content: center;align-items: center; margin-bottom: 30rpx;  ">
+          <view class='myLeftView'>
+            <image src='{{teacherInfo.avatarUrl}}' style='width: 70rpx; height: 70rpx; border-radius: 35rpx; margin-top: 15rpx'></image>
+            <text style='font-size:18rpx; color:#202020;  line-height: 22rpx ; margin-top: 12rpx'>{{teacherInfo.nickName}}</text>
+          </view>
+          <view class='myRightView'>
+            <view style='position:relative; width:100%; height:100%;'>
+              <image src='../../images/sanjiao.png' style='width: 100%; height: 100%; '></image>
+              <view style="position:absolute; z-indent:2; left:60rpx; top:24rpx; right:40rpx;bottom:40rpx;  display: flex;  flex-direction: column">
+                <text style='font-size:24rpx; color: gray; '>{{teacherInfo.result.body.pj}}</text>
+              </view>
             </view>
-            <block wx:if="{{showImg}}">
-                <view>
-                    <image class='henlan' src="../../images/henlan.png"></image>
-                </view>
-            </block>
-            <block wx:else>
-                <view style=" display: flex; flex-direction: row; width: 90%; height: 177rpx; justify-content: center;align-items: center; margin-bottom: 30rpx;  ">
-                    <view class='myLeftView'>
-                        <image src='{{teacherInfo.avatarUrl}}' style='width: 70rpx; height: 70rpx; border-radius: 35rpx; margin-top: 15rpx'></image>
-                        <text style='font-size:18rpx; color:#202020;  line-height: 22rpx ; margin-top: 12rpx'>{{teacherInfo.nickName}}</text>
-                    </view>
-                    <view class='myRightView'>
-                        <view style='position:relative; width:100%; height:100%;'>
-                            <image src='../../images/sanjiao.png' style='width: 100%; height: 100%; '></image>
-                            <view style="position:absolute; z-indent:2; left:60rpx; top:24rpx; right:40rpx;bottom:40rpx;  display: flex;  flex-direction: column">
-                                <text style='font-size:24rpx; color: gray; '>{{teacherInfo.result.body.pj}}</text>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-            </block>
+          </view>
         </view>
+      </block>
+    </view>
 
-        <block wx:if="{{activitys.length>0}}">
-            <view class='section1_view ' style='margin-bottom: 100rpx;'>
-                <image class='teach_img dafen_img' src="{{shareSuccesDagta.topImgUrl}}"></image>
-                <text style="color: #323232; font-size: 24rpx;font-family: Arial, Helvetica, sans-serif;  margin-bottom: 60rpx;">{{shareSuccesDagta.contentText}}</text>
-                <block wx:for="{{activitys}}" wx:key="userInfoListId">
-                    <view class='myReward'>
-                        <image style="margin-top: -32rpx; width: 242rpx; height: 65rpx; " src="{{item.imgUrl}}"></image>
-                        <view class='jiangliTextView'>
-                            <text>{{item.content}}</text>
-                        </view>
-                    </view>
-                </block>
-                <view style='display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 44rpx;'>
-                    <text style='color: #4f4f4f; font-size: 24rpx;'>已有<text style='color: #E05050; font-size: 30rpx; margin: 10rpx; '>{{teacherInfo.activity.enjoyPeople}}</text>人约TA</text>
-                </view>
-                <block wx:if="{{!invitation}}">
-                    <view class='tuijian_footview'>
-                        <button class='tuijian_item' open-type="share">
-                            毫不犹豫地推荐
-                        </button>
-                        <button class='tuijian_item tuijianbtn_nomal' bindtap='navBack'>
-                            不了，机会留给别人
-                        </button>
-                    </view>
-                </block>
-                <template is="foot" />
+    <block wx:if="{{activitys.length>0}}">
+      <view class='section1_view ' style='margin-bottom: 100rpx;'>
+        <image class='teach_img dafen_img' src="{{shareSuccesDagta.topImgUrl}}"></image>
+        <text style="color: #323232; font-size: 24rpx;font-family: Arial, Helvetica, sans-serif;  margin-bottom: 60rpx;">{{shareSuccesDagta.contentText}}</text>
+        <block wx:for="{{activitys}}" wx:key="userInfoListId">
+          <view class='myReward'>
+            <image style="margin-top: -32rpx; width: 242rpx; height: 65rpx; " src="{{item.imgUrl}}"></image>
+            <view class='jiangliTextView'>
+              <text>{{item.content}}</text>
             </view>
+          </view>
         </block>
-        <block wx:else>
-            <view class='section1_view ' style='margin-bottom: 60rpx;'>
-                <image class='teach_img dafen_img' src="{{shareSuccesDagta.topImgUrl}}"></image>
-                <view style='display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 44rpx;'>
-                    <image class='tuijian' src="{{tuijianImgUrl}}"></image>
-                    <text style='color: #4f4f4f; font-size: 24rpx;'>已有<text style='color: #E05050; font-size: 30rpx; margin: 10rpx; '>{{teacherInfo.activity.enjoyPeople}}</text>人约TA</text>
-                </view>
-                <block wx:if="{{!invitation}}">
-                    <view class='tuijian_footview'>
-                        <button class='tuijian_item' open-type="share">
-                            毫不犹豫地推荐
-                        </button>
-                        <button class='tuijian_item tuijianbtn_nomal' bindtap='navBack'>
-                            不了，机会留给别人
-                        </button>
-                    </view>
-                </block>
-                <template is="foot" />
-            </view>
+        <view style='display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 44rpx;'>
+          <text style='color: #4f4f4f; font-size: 24rpx;'>已有<text style='color: #E05050; font-size: 30rpx; margin: 10rpx; '>{{teacherInfo.activity.enjoyPeople}}</text>人约TA</text>
+        </view>
+        <block wx:if="{{!invitation}}">
+          <view class='tuijian_footview'>
+            <button class='tuijian_item' open-type="share">
+              毫不犹豫地推荐
+            </button>
+            <button class='tuijian_item tuijianbtn_nomal' bindtap='navBack'>
+              不了，机会留给别人
+            </button>
+          </view>
         </block>
-        <view style="height: 100rpx;"></view>
+        <template is="foot" />
+      </view>
+    </block>
+    <block wx:else>
+      <view class='section1_view ' style='margin-bottom: 60rpx;'>
+        <image class='teach_img dafen_img' src="{{shareSuccesDagta.topImgUrl}}"></image>
+        <view style='display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 44rpx;'>
+          <image class='tuijian' src="{{tuijianImgUrl}}"></image>
+          <text style='color: #4f4f4f; font-size: 24rpx;'>已有<text style='color: #E05050; font-size: 30rpx; margin: 10rpx; '>{{teacherInfo.activity.enjoyPeople}}</text>人约TA</text>
+        </view>
+        <block wx:if="{{!invitation}}">
+          <view class='tuijian_footview'>
+            <button class='tuijian_item' open-type="share">
+              毫不犹豫地推荐
+            </button>
+            <button class='tuijian_item tuijianbtn_nomal' bindtap='navBack'>
+              不了，机会留给别人
+            </button>
+          </view>
+        </block>
+        <template is="foot" />
+      </view>
+    </block>
+    <view style="height: 100rpx;"></view>
+  </view>
+  <block wx:if="{{invitation}}">
+    <view wx:if='{{userInfo}}' class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='yuyue'>
+      <text style='font-weight: bold;'>马上约TA</text>
     </view>
-    <block wx:if="{{invitation}}">
-        <view class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='yuyue'>
-            <text style='font-weight: bold;'>马上约TA</text>
+  </block>
+  <block wx:else>
+    <view wx:if='{{userInfo}}' class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='showHaibao'>
+      <text style='font-weight: bold;'>一键生成海报</text>
+    </view>
+  </block>
+  
+  <block wx:if="{{baseTipViewShow}}">
+    <view class='tipView' bindtap='selectBaseImage'>
+      <view class='showQView'>
+        <image mode='aspectFit' class='tipImage' src='{{baseImgUrl}}' bindtap='selectBaseImage'></image>
+        <view class='saveImgView'>
+          <button class='saveBtnView' open-type="share" style='margin-right: 40rpx; '>
+            推荐给好友
+          </button>
+          <view class='saveBtnView' bindtap='saveImage'>
+            <text>保存到相册</text>
+          </view>
         </view>
-    </block>
-    <block wx:else>
-        <view class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='showHaibao'>
-            <text style='font-weight: bold;'>一键生成海报</text>
-        </view>
-    </block>
-    <block wx:if="{{baseTipViewShow}}">
-        <view class='tipView' bindtap='selectBaseImage'>
-            <view class='showQView'>
-                <image mode='aspectFit' class='tipImage' src='{{baseImgUrl}}' bindtap='selectBaseImage'></image>
-                <view class='saveImgView'>
-                    <button class='saveBtnView' open-type="share" style='margin-right: 40rpx; '>
-                        推荐给好友
-                    </button>
-                    <view class='saveBtnView' bindtap='saveImage' >
-                        <text>保存到相册</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </block>
-    <block wx:else>
-        <view />
-    </block>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view />
+  </block>
+
+  <view hidden="{{hidden}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='titleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 30rpx; '>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent; '>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
+    </view>
+  </view>
+
+
 </view>

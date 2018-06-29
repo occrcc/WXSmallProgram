@@ -19,6 +19,9 @@ Page({
     peopleArr:null,
     shareData: {},
     isIphoneX: app.globalData.isIphoneX,
+    userInfo: null,
+    hidden: true,
+    optionId:'',
   },
 
   onShareAppMessage: function () {
@@ -26,47 +29,53 @@ Page({
   },
 
 
-  onReady: function () {
-    if (!this.data.userInfo) {
-      wx.redirectTo({
-        url: '../authorization/authorization?page=signinput' + '&id=' + this.data.dataItem.id,
-      })
-    }
-  },
-
   onShow: function () {
-    this.loadUserInfo();
     var time = utils.formatDate(new Date());
     this.setData({ currentDate: time });
   },
 
+  loadAllData: function (optionId){
+    optionId = optionId ? optionId : this.data.optionId;
+    this.getDataById(optionId, (res) => {
+      var item = res.data;
+      this.setData({
+        shareData: {
+          title: item.title,
+          imageUrl: '../../images/hd_share.jpg',
+          path: '/pages/signInput/signInput?id=' + optionId,
+        }
+      })
+
+      console.log('loadAllData', this.data.shareData);
+
+      var types = item.body.submitSheetFields;
+      if (item.body.activitytime.length < 1 && item.body.activityaddress.length < 1 && item.body.tel.length < 1) {
+        this.setData({ showHd: false });
+      }
+      this.setData({ dataItem: item, inputTypes: types });
+      WxParse.wxParse('article', 'html', item.info, this, 5);
+    });
+    this.getActivityid(optionId, (res) => {
+      let resd = res.data;
+      if (resd.length > 0) {
+        this.setData({ peopleArr: resd });
+      }
+    });
+  },
+
   onLoad: function (options) {
-    if (options.id) {
-      this.getDataById(options.id, (res) => {
-        var item = res.data;
+    this.setData({ optionId: options.id})
+    this.loadUserInfo((res) => {
+      if (!res) {
         this.setData({
-          shareData: {
-            title: item.title,
-            imageUrl: '../../images/hd_share.png',
-            path: '/pages/signInput/signInput?id=' + options.id,
-          }
-        })
-
-        var types = item.body.submitSheetFields;
-        if (item.body.activitytime.length < 1 && item.body.activityaddress.length < 1 && item.body.tel.length < 1){
-          this.setData({ showHd: false });
+          hidden: false
+        });
+      } else {
+        if (options.id) {
+          this.loadAllData(options.id);
         }
-        this.setData({ dataItem: item, inputTypes: types });
-        WxParse.wxParse('article', 'html', item.info, this, 5);
-      });
-
-      this.getActivityid(options.id, (res) => {
-        let resd = res.data;
-        if (resd.length > 0){
-          this.setData({ peopleArr: resd });
-        }
-      });
-    }
+      }
+    })
   },
 
   getDataById: function (id, successcallback) {
@@ -248,17 +257,54 @@ Page({
     this.setData({ toView: 'toView' })
   },
 
-  loadUserInfo: function (item) {
-    var self = this;
+  loadUserInfo: function (backres) {
+    var that = this;
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        self.setData({ userInfo: res.data })
+        backres(null);
+        // that.setData({
+        //   userInfo: res.data,
+        // })
+        // backres(res.data);
       },
-      fail: function (err) {
-        console.log("loadUserError: ", err);
+      fail: function (error) {
+        backres(null);
       }
     })
+  },
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+
+      console.log('授权成功', e.detail.userInfo);
+      this.loadAllData();
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
   },
 
 })

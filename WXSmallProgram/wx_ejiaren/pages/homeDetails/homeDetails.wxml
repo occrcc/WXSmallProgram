@@ -1,126 +1,146 @@
 <import src="../common/foot.wxml" />
 <view class="container">
-    <view class="warp">
-        <image src="http://pic.ejiarens.com/wx/back_img.png"></image>
+  <view class="warp">
+    <image src="http://pic.ejiarens.com/wx/back_img.png"></image>
+  </view>
+  <view wx:if='{{userInfo}}' class='base_scroll'>
+    <view  class='section1_view'>
+      <image class='teach_img' src="{{teacherInfo.body.teacherThumb}}"></image>
+      <text>{{teacherInfo.body.teacherEngName}}</text>
+      <text>{{teacherInfo.title}}</text>
+      <text style="color:#888888; font-size: 20rpx; font-weight:normal;  font-family:SourceHanSansCN-Regular; margin-bottom: 22rpx;">{{teacherInfo.body.teacherPosition}}</text>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>技能：</text>
+        </view>
+        <view class='lab_items'>
+          <block wx:for="{{labs}}" wx:key="userInfoListId">
+            <view class='lab_item'>
+              <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>主场：</text>
+        </view>
+        <view class='lab_items'>
+          <block wx:for="{{flgs}}" wx:key="userInfoListId">
+            <view class='flg_item'>
+              <image class='flg_icon' src="{{item}}" style="margin-right: 15rpx;"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>标签：</text>
+        </view>
+        <view class='lab_items '>
+          <block wx:for="{{tips}}" wx:key="userInfoListId">
+            <view class='lab_item' style="background: linear-gradient(to right, #3CBAFF , #6BD1F7)">
+              <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='teach_lab'>
+        <view class='title_view'>
+          <text>战绩：</text>
+        </view>
+        <view class='lab_items ' style='align-items: center; '>
+          <text style='color: #202020; font-size: 20rpx;'>已打败业内<text style='color: #E05050; font-size: 30rpx; margin: 10rpx;'>{{teacherInfo.body.teacherRank}}%</text>的老师</text>
+        </view>
+      </view>
     </view>
-    <view class='base_scroll'>
+    <view class='section1_view section2_view'>
+      <image class='teach_img dafen_img' src="../../images/dafen.png"></image>
+      <view class='star_view'>
+        <view class='left_view'>
+          <text>经验值：</text>
+        </view>
+        <view class='right_view'>
+          <view bindtap="starTap" data-index="{{index}}" class="star" wx:for="{{userStars}}" wx:key="index">
+            <image src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class='star_view'>
+        <view class='left_view'>
+          <text>活力值：</text>
+        </view>
+        <view class='right_view'>
+          <view bindtap="starTap2" data-index="{{index}}" class="star" wx:for="{{userStars2}}" wx:key="index">
+            <image src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class='star_view'>
+        <view class='left_view'>
+          <text>专业知识：</text>
+        </view>
+        <view class='right_view'>
+          <view bindtap="starTap3" data-index="{{index}}" class="star" wx:for="{{userStars3}}" wx:key="index">
+            <image src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class='star_view'>
+        <view class='left_view'>
+          <text>办事效率：</text>
+        </view>
+        <view class='right_view'>
+          <view bindtap="starTap4" data-index="{{index}}" class="star" wx:for="{{userStars4}}" wx:key="index">
+            <image src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class='star_view'>
+        <view class='left_view'>
+          <text>认真负责：</text>
+        </view>
+        <view class='right_view'>
+          <view bindtap="starTap5" data-index="{{index}}" class="star" wx:for="{{userStars5}}" wx:key="index">
+            <image src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class="textarea-wrp">
+        <view style='position:relative; width:100%; height:100%; padding-top: 30rpx; color: gray; '>
+          <textarea maxlength='50' bindinput="valueChange" value="{{message}}" placeholder='emmmm……关于这个老师我想说……最多输入50个字哦！' placeholder-style="color:#dedede font-size: 24rpx; font-weight: normal;" style='width:100%; height:100%; ' />
+          <view style='position:absolute; width:80rpx; height:44rpx; right:-10rpx;  top:-20rpx; display: flex;justify-content: center;  '>
+            <text>{{currentWordNumber|0}}/{{max}}</text>
+          </view>
+        </view>
+      </view>
+      <template is="foot" />
+    </view>
+    <view style="height: 100rpx;"></view>
+  </view>
+  <view wx:if='{{userInfo}}' class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='submit' style='z-index: 999311'>
+    <text style='font-weight: bold;'>立马评价</text>
+    <text style='font-size:20rpx'>为TA打Call</text>
+  </view>
 
-        <view class='section1_view'>
-            <image class='teach_img' src="{{teacherInfo.body.teacherThumb}}"></image>
-            <text>{{teacherInfo.body.teacherEngName}}</text>
-            <text>{{teacherInfo.title}}</text>
-            <text style="color:#888888; font-size: 20rpx; font-weight:normal;  font-family:SourceHanSansCN-Regular; margin-bottom: 22rpx;">{{teacherInfo.body.teacherPosition}}</text>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>技能：</text>
-                </view>
-                <view class='lab_items'>
-                    <block wx:for="{{labs}}" wx:key="userInfoListId">
-                        <view class='lab_item'>
-                            <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>主场：</text>
-                </view>
-                <view class='lab_items'>
-                    <block wx:for="{{flgs}}" wx:key="userInfoListId">
-                        <view class='flg_item'>
-                            <image class='flg_icon' src="{{item}}" style="margin-right: 15rpx;"></image>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>标签：</text>
-                </view>
-                <view class='lab_items '>
-                    <block wx:for="{{tips}}" wx:key="userInfoListId">
-                        <view class='lab_item' style="background: linear-gradient(to right, #3CBAFF , #6BD1F7)">
-                            <text style="margin-left: 10rpx;margin-right: 10rpx;">{{item}}</text>
-                        </view>
-                    </block>
-                </view>
-            </view>
-            <view class='teach_lab'>
-                <view class='title_view'>
-                    <text>战绩：</text>
-                </view>
-                <view class='lab_items ' style='align-items: center; '>
-                    <text style='color: #202020; font-size: 20rpx;'>已打败业内<text style='color: #E05050; font-size: 30rpx; margin: 10rpx;'>{{teacherInfo.body.teacherRank}}%</text>的老师</text>
-                </view>
-            </view>
-        </view>
-        <view class='section1_view section2_view'>
-            <image class='teach_img dafen_img' src="../../images/dafen.png"></image>
-            <view class='star_view'>
-                <view class='left_view'>
-                    <text>经验值：</text>
-                </view>
-                <view class='right_view'>
-                    <view bindtap="starTap" data-index="{{index}}" class="star" wx:for="{{userStars}}" wx:key="index">
-                        <image src="{{item}}"></image>
-                    </view>
-                </view>
-            </view>
-            <view class='star_view'>
-                <view class='left_view'>
-                    <text>活力值：</text>
-                </view>
-                <view class='right_view'>
-                    <view bindtap="starTap2" data-index="{{index}}" class="star" wx:for="{{userStars2}}" wx:key="index">
-                        <image src="{{item}}"></image>
-                    </view>
-                </view>
-            </view>
-            <view class='star_view'>
-                <view class='left_view'>
-                    <text>专业知识：</text>
-                </view>
-                <view class='right_view'>
-                    <view bindtap="starTap3" data-index="{{index}}" class="star" wx:for="{{userStars3}}" wx:key="index">
-                        <image src="{{item}}"></image>
-                    </view>
-                </view>
-            </view>
-            <view class='star_view'>
-                <view class='left_view'>
-                    <text>办事效率：</text>
-                </view>
-                <view class='right_view'>
-                    <view bindtap="starTap4" data-index="{{index}}" class="star" wx:for="{{userStars4}}" wx:key="index">
-                        <image src="{{item}}"></image>
-                    </view>
-                </view>
-            </view>
-            <view class='star_view'>
-                <view class='left_view'>
-                    <text>认真负责：</text>
-                </view>
-                <view class='right_view'>
-                    <view bindtap="starTap5" data-index="{{index}}" class="star" wx:for="{{userStars5}}" wx:key="index">
-                        <image src="{{item}}"></image>
-                    </view>
-                </view>
-            </view>
-            <view class="textarea-wrp">
-                <view style='position:relative; width:100%; height:100%; padding-top: 30rpx; color: gray; '>
-                    <textarea maxlength='50' bindinput="valueChange" value="{{message}}" placeholder='emmmm……关于这个老师我想说……最多输入50个字哦！' placeholder-style="color:#dedede font-size: 24rpx; font-weight: normal;" style='width:100%; height:100%; ' />
-                    <view style='position:absolute; width:80rpx; height:44rpx; right:-10rpx;  top:-20rpx; display: flex;justify-content: center;  '>
-                        <text>{{currentWordNumber|0}}/{{max}}</text>
-                    </view>
-                </view>
-            </view>
-            <template is="foot" />
-        </view>
-        <view style="height: 100rpx;"></view>
+
+  <view hidden="{{hidden}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='titleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 30rpx; '>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent; '>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
     </view>
-    <view class="{{isIphoneX?'phoneXfootView':'footView'}}" bindtap='submit' style='z-index: 999311'>
-        <text style='font-weight: bold;'>立马评价</text>
-        <text style='font-size:20rpx'>为TA打Call</text>
-    </view>
+  </view>
 </view>

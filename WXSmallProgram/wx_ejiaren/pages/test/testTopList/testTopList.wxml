@@ -29,4 +29,12 @@
     </view>
   </view>
 
+  <view hidden='{{isHideBack}}' class='backHomeStyle' bindtap='backHome'>
+    <text>返回首页</text>
+  </view>
+
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+
 </view>

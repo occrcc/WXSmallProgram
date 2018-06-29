@@ -10,7 +10,7 @@
     加载中...
   </loading>
 
-  <scroll-view scroll-y="true" scroll-with-animation='true' class='base_scroll' scroll-into-view="{{toView}}">
+  <scroll-view wx:if='{{userInfo}}' scroll-y="true" scroll-with-animation='true' class='base_scroll' scroll-into-view="{{toView}}">
     <view class='contentViewStyle'>
       <image class='headImg' src="http://pic.ejiarens.com/wx/hd_headImg.png">
       </image>
@@ -164,10 +164,30 @@
     </view>
   </block>
 
-  <view class="{{isIphoneX?'phoneXfootView':'footView'}}">
+  <view wx:if='{{userInfo}}' class="{{isIphoneX?'phoneXfootView':'footView'}}">
     <button  open-type="share">
       毫不犹豫地推荐
     </button>
+  </view>
+
+  <view hidden="{{hidden}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='titleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 30rpx; '>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent;'>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
+    </view>
   </view>
 
 </view>

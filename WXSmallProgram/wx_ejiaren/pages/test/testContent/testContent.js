@@ -32,7 +32,6 @@ Page({
 
   next: function (e) {
 
-
     if (this.data.selectIndex >= 0) {
       return;
     }
@@ -123,6 +122,7 @@ Page({
           question: questions,
           allData:res,
         })
+        
         var sequestion = [];
         var selectQuestion = questions.filter(v => !v.spec);
         selectQuestion = that.shuffleArray(selectQuestion);

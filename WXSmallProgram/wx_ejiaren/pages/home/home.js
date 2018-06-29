@@ -13,7 +13,12 @@ Page({
     index: 1,
     size: 6,
     searchLoadingComplete: false,
+    hidden: true,
+    itemId: '',
+    userInfo:null,
+    item:{},
   },
+
   onShow: function () {
     this.makeRequest();
   },
@@ -137,9 +142,7 @@ Page({
       })
   },
 
-  onLoad: function (options) {
-    this.loadUserInfo();
-  },
+  
 
   showAlert: function (message) {
     wx.showModal({
@@ -154,22 +157,16 @@ Page({
   selectItem: function (event) {
     let index = parseInt(event.currentTarget.id);
     var item = JSON.stringify(this.data.itemArr[index]);
-    this.loadUserInfo(item);
-  },
-
-  loadUserInfo: function (item) {
-    var self = this;
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        console.log("loadUser: ", res.data);
-        if (item) {
-          wx.navigateTo({
-            url: '../homeDetails/homeDetails?item=' + item
-          })
-        }
-      },
-      fail: function (err) {
+    this.setData({item:item});
+    this.loadUserInfo((res) => {
+      if (!res) {
+        this.setData({
+          hidden: false
+        });
+      } else {
+        wx.navigateTo({
+          url: '../homeDetails/homeDetails?item=' + item
+        })
       }
     })
   },
@@ -183,6 +180,57 @@ Page({
     this.setData({ index: index }, () => {
       this.makeRequest(true);
     });
-  }
+  },
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+
+      console.log('授权成功', e.detail.userInfo);
+      wx.navigateTo({
+        url: '../homeDetails/homeDetails?item=' + this.data.item
+      })
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
+  },
+
+  loadUserInfo: function (backres) {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
+      },
+      fail: function (error) {
+        backres(null);
+      }
+    })
+  },
 
 })

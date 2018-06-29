@@ -29,7 +29,6 @@ Page({
   },
 
   onLoad: function(options) {
-    
     console.log(options.id);
     var activeid = options.id ? options.id : '444';
     var percentage = parseInt(options.percentage);
@@ -82,6 +81,13 @@ Page({
       url: 'ognz/v2/listActivityEnrollEnjoyByActivityIdAndObjId?activityId=' + res.activityid + '&openId=' + res.openId,
       success: function(requestData) {
         console.log('requestData', requestData.data);
+        var data = requestData.data;
+        for (var i = 0, len = data.length; i < len; i++) {
+          var obj = data[i];
+          if (obj.nickname.length > 6) {
+            obj.nickname = obj.nickname.slice(0, 6) + '...';
+          }
+        }
         that.setData({
           topList: requestData.data
         });

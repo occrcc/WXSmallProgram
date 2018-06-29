@@ -1,43 +1,63 @@
 <import src="../common/foot.wxml" />
 
 <view class="container">
-    <block wx:for="{{itemArr}}" wx:key="id">
-        <view class="item_view" id="{{index}}" bindtap="selectItem">
-            <image src="{{item.headImg}}" class='head_img'></image>
-            <view class='content_view'>
-                <view class='text_view'>
-                    <text style="font-family:SourceHanSansCN-Heavy; font-size:24rpx; ">{{item.body.teacherEngName}}</text>
-                    <text style="font-family:SourceHanSansCN-Bold; font-size:24rpx;">{{item.title}}</text>
-                    <text style="color:#888888; font-size: 20rpx; font-weight:normal; margin-bottom: 16rpx; font-family:SourceHanSansCN-Regular;">{{item.body.teacherPosition}}</text>
-                </view>
-                <view class='footView'>
-                    <view class='foot_item'>
-                        <image src="../../images/timer.png" class='foot_icon'></image>
-                        <text>{{item.timer}}</text>
-                    </view>
-                    <view class='foot_item'>
-                        <image src="../../images/people.png" class='foot_icon'></image>
-                        <text>{{item.sharePeople}}</text>
-                    </view>
-                    <view class='foot_item'>
-                        <image src="../../images/like.png" class='foot_icon'></image>
-                        <text>{{item.enjoyPeople}}</text>
-                    </view>
-                </view>
-            </view>
-            <image src="{{item.body.teacherThumb}}" class='teacher_img'></image>
+  <block wx:for="{{itemArr}}" wx:key="id">
+    <view class="item_view" id="{{index}}" bindtap="selectItem">
+      <image src="{{item.headImg}}" class='head_img'></image>
+      <view class='content_view'>
+        <view class='text_view'>
+          <text style="font-family:SourceHanSansCN-Heavy; font-size:24rpx; ">{{item.body.teacherEngName}}</text>
+          <text style="font-family:SourceHanSansCN-Bold; font-size:24rpx;">{{item.title}}</text>
+          <text style="color:#888888; font-size: 20rpx; font-weight:normal; margin-bottom: 16rpx; font-family:SourceHanSansCN-Regular;">{{item.body.teacherPosition}}</text>
         </view>
-    </block>
+        <view class='footView'>
+          <view class='foot_item'>
+            <image src="../../images/timer.png" class='foot_icon'></image>
+            <text>{{item.timer}}</text>
+          </view>
+          <view class='foot_item'>
+            <image src="../../images/people.png" class='foot_icon'></image>
+            <text>{{item.sharePeople}}</text>
+          </view>
+          <view class='foot_item'>
+            <image src="../../images/like.png" class='foot_icon'></image>
+            <text>{{item.enjoyPeople}}</text>
+          </view>
+        </view>
+      </view>
+      <image src="{{item.body.teacherThumb}}" class='teacher_img'></image>
+    </view>
+  </block>
 
-    <block wx:if='{{showGujia}}'>
-        <view class="warp">
-            <image src="{{gujiaImgUrl}}"></image>
-        </view>
-    </block>
+  <block wx:if='{{showGujia}}'>
+    <view class="warp">
+      <image src="{{gujiaImgUrl}}"></image>
+    </view>
+  </block>
 
   <!-- <view class="loading" hidden="{{searchLoadingComplete}}">正在载入更多...</view> -->
   <view bindtap='loadMore' class="loading complete" hidden="{{searchLoadingComplete}}">点击加载更多</view>
   <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
-    <template is="foot" />
+  <template is="foot" />
+
+  <view hidden="{{hidden}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='titleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 30rpx; '>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent; '>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
+    </view>
+  </view>
 
 </view>

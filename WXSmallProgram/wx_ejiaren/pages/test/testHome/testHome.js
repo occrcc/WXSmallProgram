@@ -20,6 +20,7 @@ Page({
     allData:{},
     openId:'',
     shareData: {},
+
   },
 
   onShareAppMessage: function () {
@@ -117,7 +118,7 @@ Page({
     console.log('查看结果', e.detail.formId);
     app.postFormID(this.data.openId, e.detail.formId);
     wx.navigateTo({
-      url: '../testTopList/testTopList?id=' + this.data.allData.id
+      url: '../testTopList/testTopList?id=' + this.data.allData.id + '&isHideBack=true'
     })
   },
 
@@ -143,7 +144,6 @@ Page({
   startBtn: function (e) {
     console.log('开始测试', e.detail.formId);
     app.postFormID(this.data.openId, e.detail.formId);
-
     if (!this.data.activice){
       this.showAlert();
       return;
@@ -181,7 +181,6 @@ Page({
         key: 'userInfo',
         data: e.detail.userInfo,
       })
-
       this.setData({
         userInfo: e.detail.userInfo,
       });
@@ -213,9 +212,9 @@ Page({
 
   pushContent:function(){
     this.tongji(true);
-    wx.navigateTo({
-      url: '../testQuestions/testQuestions?id=' + 636,
-    })
+    // wx.navigateTo({
+    //   url: '../testQuestions/testQuestions?id=' + 636,
+    // })
 
     // wx.navigateTo({
     //   url: '../testTacit/testTacit?id=' + 470 + '&percentage=' + 60,
@@ -225,9 +224,9 @@ Page({
     //   url: '../testTopList/testTopList?id=' + this.data.allData.id
     // })
    
-    // wx.navigateTo({
-    //   url: '../testContent/testContent',
-    // })
+    wx.navigateTo({
+      url: '../testContent/testContent',
+    })
   },
 
   makeRequest: function (successcallback) {

@@ -11,6 +11,9 @@ Page({
     index: 1,
     size: 6,
     searchLoadingComplete:false,
+    userInfo: null,
+    hidden: true,
+    itemId:'',
   },
 
   onShow: function () {
@@ -95,8 +98,18 @@ Page({
   selectItem: function (event) {
     let index = parseInt(event.currentTarget.id);
     var item = this.data.itemArr[index];
-    wx.navigateTo({
-      url: '../signInput/signInput?id=' + item.id
+    this.setData({ itemId: item.id})
+
+    this.loadUserInfo((res) => {
+      if (!res) {
+        this.setData({
+          hidden: false
+        });
+      } else {
+        wx.navigateTo({
+          url: '../signInput/signInput?id=' + item.id
+        })
+      }
     })
   },
 
@@ -110,5 +123,58 @@ Page({
     this.setData({ index: index }, () => {
       this.makeRequest(true);
     });
-  }
+  },
+
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+
+      console.log('授权成功', e.detail.userInfo);
+      wx.navigateTo({
+        url: '../signInput/signInput?id=' + this.data.itemId
+      })
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
+  },
+
+  loadUserInfo: function (backres) {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
+      },
+      fail: function (error) {
+        backres(null);
+      }
+    })
+  },
+
 })

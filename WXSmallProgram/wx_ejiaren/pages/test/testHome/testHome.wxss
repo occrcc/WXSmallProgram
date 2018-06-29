@@ -12,6 +12,8 @@
   width: 640rpx;
   height: 275rpx;
   margin-top: 6rpx;
+  
+  
 }
 
 .titleImgStyle {
@@ -153,7 +155,7 @@ button::after {
 }
 
 .modelCenterView {
-  width: 72%;
+  width: 84%;
   background: white;
   border-radius: 10rpx;
   flex-direction: column;

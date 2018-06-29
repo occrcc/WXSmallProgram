@@ -27,7 +27,6 @@
     </form>
   </view>
 
-
   <image class='footImgStyle' src='http://pic.ejiarens.com/wx/test_foot.png'></image>
   <view class='complaints'>
     <form bindsubmit="tousu" report-submit='true'>
@@ -52,8 +51,7 @@
       <view class='titleView'>
         <text>微信授权</text>
       </view>
-      <view style='width: 100%;height: 90rpx; display: flex;justify-content: center;align-items: center;'>
-        <image src='{{ognzIcon}}' style='width: 46rpx;height: 46rpx;'></image>
+      <view style='width: 100%;height: 30rpx; '>
       </view>
       <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
         <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
@@ -62,8 +60,8 @@
         <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
       </view>
       <view class='sqBtnView'>
-        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; '>拒绝</button>
-        <button class='btnItem' style='color:green' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent;'>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
       </view>
     </view>
   </view>

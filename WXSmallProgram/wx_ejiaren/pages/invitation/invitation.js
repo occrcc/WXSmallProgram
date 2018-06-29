@@ -45,6 +45,8 @@ Page({
         },
         initData:null,
         sharId:null,
+        hidden:true,
+        options:null,
     },
 
     onShareAppMessage: function () {
@@ -52,6 +54,8 @@ Page({
     },
 
     initData: function (item, options, res) {
+        res = this.data.userInfo;
+
         let star1 = parseInt(item.result.body.star1);
         let star2 = parseInt(item.result.body.star2);
         let star3 = parseInt(item.result.body.star3);
@@ -169,10 +173,40 @@ Page({
         }
     },
 
+    loadAllData: function (options){
+      var that = this;
+      options = options ? options : this.data.options;
+      if (parseInt(options.sharid) > 0) {
+        network.GET({
+          params: {},
+          url: 'ognz/getActivityShareUserById/' + options.sharid,
+          success: function (requestData) {
+            var getitem = requestData.data;
+            getitem.nickName = getitem.result.nickName;
+            getitem.avatarUrl = getitem.result.avar;
+            that.initData(getitem, options);
+          },
+          fail: function (res) {
+            wx.showModal({
+              title: '请检查网络连接',
+              content: JSON.stringify(error),
+              showCancel: false,
+            })
+          },
+        })
+      } else {
+        console.log('带数据过来的');
+        var item = JSON.parse(options.data);
+        console.log ('1232131',item);
+        that.initData(item, options);
+      }
+      that.produceCanvasImg();
+    },
    
 
     onLoad: function (options) {
       var that = this;
+      that.setData({ options: options })
       if (options.sharid) {
         this.setData({ sharId: options.sharid})
       }
@@ -184,48 +218,15 @@ Page({
       }
 
       this.loadUserInfo((res) => {
-        if (res == null && options.sharid) {
-          wx.redirectTo({
-            url: '../authorization/authorization?page=invitation&invitation=' + options.invitation + '&sharid=' + options.sharid,
-          })
-          return;
-        }
-        if (parseInt(options.sharid) > 0) {
-          network.GET({
-            params: {},
-            url: 'ognz/getActivityShareUserById/' + options.sharid,
-            success: function (requestData) {
-              var getitem = requestData.data;
-              getitem.nickName = getitem.result.nickName;
-              getitem.avatarUrl = getitem.result.avar;
-              that.initData(getitem, options, res);
-            },
-            fail: function (res) {
-              wx.showModal({
-                title: '请检查网络连接',
-                content: JSON.stringify(error),
-                showCancel: false,
-              })
-            },
-          })
+        if (!res) {
+          this.setData({
+            hidden: false
+          });
         } else {
-          console.log('带数据过来的');
-          var item = JSON.parse(options.data);
-          that.initData(item, options, res);
+          this.loadAllData(options);
         }
-      });
-      that.produceCanvasImg();
-        // var a = [
-        //   "Hydrogen",
-        //   "Helium",
-        //   "Lithium",
-        //   "Beryl­lium"
-        // ];
-        // var a3 = a.map(s => s.length);  
-        // console.log('a3:',a3);
+      })
     },
-
-    
 
     produceCanvasImg:function(){
         var that = this;
@@ -285,29 +286,11 @@ Page({
         })
     },
 
-    loadUserInfo: function (backres) {
-        var that = this;
-        wx.getStorage({
-            key: 'userInfo',
-            success: function (res) {
-                console.log("loadUsers1: ", res.data);
-                that.setData({
-                    userInfo: res.data,
-                })
-                backres(res.data);
-            },
-            fail:function(res){
-              backres(null);
-            }
-        })
-    },
-
     showHaibao: function () {
         this.setData({
             baseTipViewShow: true,
         })
     },
-
    
     saveImage: function () {
         var that = this;
@@ -405,6 +388,56 @@ Page({
         ];
         emojireg = emojireg.replace(new RegExp(ranges.join('|'), 'g'), '');
         return emojireg;
+    },
+
+
+    cancel: function () {
+      this.setData({
+        hidden: true
+      });
+    },
+
+    confirm: function () {
+      this.setData({
+        hidden: true
+      });
+    },
+
+    bindGetUserInfo: function (e) {
+      if (e.detail.userInfo) {
+        //用户按了允许授权按钮
+        wx.setStorage({
+          key: 'userInfo',
+          data: e.detail.userInfo,
+        })
+
+        this.setData({
+          userInfo: e.detail.userInfo,
+        });
+        console.log('授权成功', e.detail.userInfo);
+        this.loadAllData();
+
+      } else {
+        //用户按了拒绝按钮
+        console.log('拒绝使用')
+      }
+    },
+
+    loadUserInfo: function (backres) {
+      var that = this;
+      wx.getStorage({
+        key: 'userInfo',
+        success: function (res) {
+          // backres(null);
+          that.setData({
+            userInfo: res.data,
+          })
+          backres(res.data);
+        },
+        fail: function (error) {
+          backres(null);
+        }
+      })
     },
 
 })

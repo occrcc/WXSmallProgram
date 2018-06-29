@@ -40,7 +40,7 @@ App({
     if (!openId || !fromId) return;
     var senderInfo = {
       openId: openId + '',
-      fromId: fromId + '',
+      formId: fromId + '',
       ognzId: parseInt(that.globalData.ognz_id),
     }
     console.log('senderInfo', senderInfo);

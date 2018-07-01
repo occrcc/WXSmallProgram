@@ -5,7 +5,6 @@
     "pages/homeDetails/homeDetails",
     "pages/invitation/invitation",
     "pages/commiss/commiss",
-    "pages/authorization/authorization",
     "pages/signUp/signUp",
     "pages/signInput/signInput",
     "pages/signSuccessful/signSuccessful",

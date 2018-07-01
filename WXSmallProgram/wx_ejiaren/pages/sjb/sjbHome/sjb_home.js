@@ -21,7 +21,8 @@ Page({
     haiBaoName: '',
     hidden: true,
     ognzIcon: '',
-    openId: ''
+    openId: '',
+    hidden1:true,
   },
 
   onShareAppMessage: function () {
@@ -33,38 +34,22 @@ Page({
     var that = this;
     that.setData({ ognzIcon: 'http://pic.ejiarens.com/wx/ognz_' + app.globalData.ognz_id + '.png' })
     var name = app.globalData.ognz_name;
-
-    this.loadUserInfo((res) => {
-      if (options.id && res) {
-        //获取用户是否已经投票
-        that.getUserOpenId((result, res) => {
-          // if (result) {
-          //   that.loadItems(options.id);
-          // } else {
-          //   console.log(res)
-          // }
-        });
-
-        that.getDataById(options.id, (res) => {
-          var item = res.data;
-          console.log(item);
-          that.setData({
-            allData: item,
-            ognz_name: name,
-            shareData: {
-              title: '[有人@你]冲冠只差一步，一起来参加世界杯竞猜吧！',
-              imageUrl: '../../../images/sjb_shar.jpg',
-              path: '/pages/sjb/sjbHome/sjb_home?id=' + options.id,
-            }
-          })
-          this.tongji(true);
-        });
-      } else {
-        wx.redirectTo({
-          url: '../../authorization/authorization?page=sjbHome&id=' + options.id,
-        })
-      }
-    })
+    that.getUserOpenId((result, res) => {
+    });
+    that.getDataById(options.id, (res) => {
+      var item = res.data;
+      console.log(item);
+      that.setData({
+        allData: item,
+        ognz_name: name,
+        shareData: {
+          title: '[有人@你]冲冠只差一步，一起来参加世界杯竞猜吧！',
+          imageUrl: '../../../images/sjb_shar.jpg',
+          path: '/pages/sjb/sjbHome/sjb_home?id=' + options.id,
+        }
+      })
+      this.tongji(true);
+    });
   },
 
   showAlert: function (message) {
@@ -74,23 +59,6 @@ Page({
       showCancel: false,
       confirmText: '知道了',
       success: function (res) { }
-    })
-  },
-
-
-  loadUserInfo: function (backres) {
-    var that = this;
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        that.setData({
-          userInfo: res.data,
-        })
-        backres(res.data);
-      },
-      fail: function (error) {
-        backres(null);
-      }
     })
   },
 
@@ -109,16 +77,22 @@ Page({
   },
 
   showSureBtn: function () {
-
     console.log(this.data.selectId);
+    this.loadUserInfo((res) => {
+      if (!res) {
+        this.setData({
+          hidden1: false
+        });
+      } else {
+        if (this.data.selectId >= 0) {
+          console.log(this.data.haiBaoName);
+          this.submitData();
+          this.getHaibao();
+        } 
+      }
+    })
 
-    if (this.data.selectId >= 0) {
-      console.log(this.data.haiBaoName);
-      this.submitData();
-      this.getHaibao();
-    } else {
-      //console.log('提示xuanyigeqiudui')
-    }
+    
   },
 
   showHaibao: function () {
@@ -142,7 +116,7 @@ Page({
 
   },
 
-  confirm: function () {
+  confirm1: function () {
     this.setData({
       hidden: true
     });
@@ -208,26 +182,7 @@ Page({
     })
   },
 
-  loadItems: function (id) {
-    var that = this;
-    network.GET({
-      params: {},
-      url: 'ognz/v2/getActivityEnjoyByActivityIdAndOpenId?openId=' + that.data.openId + '&activityId=' + id,
-      success: function (res) {
-        console.log('ddddd', res.data);
-        if (res.data) {
-          that.setData({
-            hideName: res.data.body.selectTeam,
-            haiBaoName: res.data.body.selectTeam,
-          });
-        } else {
-        }
-      },
-      fail: function (err) {
-        console.log('请求失败:  ', err)
-      },
-    })
-  },
+  
 
   getDataById: function (id, successcallback) {
     var that = this;
@@ -460,6 +415,58 @@ Page({
         }
       })
     }
+  },
+
+  cancel: function () {
+    this.setData({
+      hidden1: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden1: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+      console.log('授权成功', e.detail.userInfo);
+      if (this.data.selectId >= 0) {
+        console.log(this.data.haiBaoName);
+        this.submitData();
+        this.getHaibao();
+      } 
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
+  },
+
+  loadUserInfo: function (backres) {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
+      },
+      fail: function (error) {
+        backres(null);
+      }
+    })
   },
 
 })

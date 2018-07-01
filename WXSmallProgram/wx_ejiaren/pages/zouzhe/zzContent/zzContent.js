@@ -11,6 +11,7 @@ Page({
     userInfo: null,
     saveImageUrl: '',
     shareData: {},
+    hidden:true,
   },
 
   onShareAppMessage: function () {
@@ -19,23 +20,20 @@ Page({
 
 
   onLoad: function (options) {
-    this.loadUserInfo((res) => {
-      if (options.id) {
-        this.getDataById(options.id, (res) => {
-          var item = res.data;
-          this.setData({
-            item: item,
-            shareData: {
-              title: '【有人@我】臣有紧要秘本上奏，请皇上快快批阅',
-              imageUrl: '../../../images/zz_share.jpg',
-              path: '/pages/zouzhe/zzContent/zzContent?id=' + item.id,
-            }
-          });
-          this.tongji(true);
-          this.getHaibao();
-        })
-      }
-    });
+    if (options.id) {
+      this.getDataById(options.id, (res) => {
+        var item = res.data;
+        this.setData({
+          item: item,
+          shareData: {
+            title: '【有人@我】臣有紧要秘本上奏，请皇上快快批阅',
+            imageUrl: '../../../images/zz_share.jpg',
+            path: '/pages/zouzhe/zzContent/zzContent?id=' + item.id,
+          }
+        });
+        this.tongji(true);
+      })
+    }
   },
 
   getDataById: function (id, successcallback) {
@@ -58,13 +56,7 @@ Page({
     })
   },
 
-  onReady: function () {
-    if (!this.data.userInfo) {
-      wx.redirectTo({
-        url: '../../authorization/authorization?page=zzContent&id=' + this.data.item.id,
-      })
-    }
-  },
+
 
   showAlert: function (message) {
     wx.showModal({
@@ -76,23 +68,18 @@ Page({
     })
   },
 
-  loadUserInfo: function (backres) {
-    var that = this;
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        console.log("loadUsers1: ", res.data);
-        that.setData({
-          userInfo: res.data,
-        })
-        backres(res.data);
-      },
-    })
-  },
-
   showHaibao: function () {
-    this.setData({
-      baseTipViewShow: true,
+    this.loadUserInfo((res) => {
+      if (!res) {
+        this.setData({
+          hidden: false
+        });
+      } else {
+        this.getHaibao();
+        this.setData({
+          baseTipViewShow: true,
+        })
+      }
     })
   },
 
@@ -203,6 +190,59 @@ Page({
         baseTipViewShow: false,
       })
     }, 2000)
+  },
+
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+      console.log('授权成功', e.detail.userInfo);
+      this.getHaibao();
+      this.setData({
+        baseTipViewShow: true,
+      })
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
+  },
+
+  loadUserInfo: function (backres) {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        // backres(null);
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
+      },
+      fail: function (error) {
+        backres(null);
+      }
+    })
   },
 
 })

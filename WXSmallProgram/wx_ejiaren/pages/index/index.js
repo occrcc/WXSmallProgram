@@ -97,9 +97,7 @@ Page({
       },
       fail: function (err) {
         console.log("loadUserError: ", err);
-        // wx.redirectTo({
-        //   url: '../authorization/authorization?page=index',
-        // })
+        
       }
     })
   },
@@ -119,10 +117,7 @@ Page({
 
   selectItem: function (event) {
     if (!this.data.isOk) {
-      // wx.redirectTo({
-      //   url: '../authorization/authorization?page=index',
-      // })
-      // return;
+     
     }
 
     let index = parseInt(event.currentTarget.id);

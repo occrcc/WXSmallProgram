@@ -262,11 +262,10 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        backres(null);
-        // that.setData({
-        //   userInfo: res.data,
-        // })
-        // backres(res.data);
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
       },
       fail: function (error) {
         backres(null);

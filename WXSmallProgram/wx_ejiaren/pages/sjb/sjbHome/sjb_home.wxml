@@ -102,11 +102,31 @@
     加载中...
   </loading>
 
-  <modal hidden="{{hidden}}" title="活动详情" confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">
+  <modal hidden="{{hidden}}" title="活动详情" confirm-text="确定" bindconfirm="confirm1" no-cancel="{{true}}">
     <text>· 活动规则：您选择的冠军与最终结果相同，即竞猜成功以7月15日最终比赛结果为准）\r\n</text>
     <text>· 活动奖励：{{allData.body.rewardText}} \r\n</text>
     <text>· 领奖方式：{{allData.body.prizes}} \r\n</text>
     <text wx:if='{{allData.body.info.length > 0}}'>· 活动说明：{{allData.body.info}}</text>
   </modal>
+
+  <view hidden="{{hidden1}}" class='modelView'>
+    <view class='modelCenterView'>
+      <view class='titleView'>
+        <text>微信授权</text>
+      </view>
+      <view style='width: 100%;height: 30rpx; '>
+      </view>
+      <view style='width: 100%;height: 70rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx;'>小程序申请获取以下权限</text>
+      </view>
+      <view style='width: 100%;height: 80rpx; display: flex;align-items: center;color:black;font-size:30rpx;  border-bottom: 1rpx rgb(222, 222, 222) solid'>
+        <text style='margin-left: 30rpx; font-size:22rpx;color:rgb(144,144,144)'>· 获得你的公开信息（昵称、头像等）</text>
+      </view>
+      <view class='sqBtnView'>
+        <button class='btnItem' bindtap='cancel' style=' border-right: 1rpx rgb(222, 222, 222) solid; background: transparent; '>拒绝</button>
+        <button class='btnItem' style='color:green;background: transparent;' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap='confirm'>允许</button>
+      </view>
+    </view>
+  </view>
 
 </view>

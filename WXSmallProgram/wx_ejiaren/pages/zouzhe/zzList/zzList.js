@@ -11,10 +11,12 @@ Page({
     index: 1,
     size: 6,
     searchLoadingComplete: false,
+    hidden: true,
+    selectItem:{},
   },
 
   onLoad: function (options) {
-    this.loadUserInfo();
+   
     this.makeRequest();
   },
 
@@ -82,9 +84,25 @@ Page({
     })
   },
 
+
+
   selectItem: function (event) {
     let index = parseInt(event.currentTarget.dataset.index);
     var item = this.filterReplyInfo(this.data.oldItemArr, index);
+    this.setData({ selectItem:item});
+    this.loadUserInfo((res) => {
+      if (!res) {
+        this.setData({
+          hidden: false
+        });
+      } else {
+        this.jumpNextView(item);
+      }
+    })
+  },
+
+  jumpNextView: function (item){
+    item = item ? item : this.data.selectItem;
     wx.navigateTo({
       url: '../zzPiyue/zzPiyue?item=' + JSON.stringify(item[0]),
     })
@@ -97,16 +115,7 @@ Page({
     })
   },
 
-  loadUserInfo: function () {
-    var self = this;
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-      },
-      fail: function (err) {
-      }
-    })
-  },
+ 
 
   jumpNext: function () {
     wx.navigateTo({
@@ -134,5 +143,54 @@ Page({
     this.setData({ index: index }, () => {
       this.makeRequest(true);
     });
+  },
+
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  confirm: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  bindGetUserInfo: function (e) {
+    if (e.detail.userInfo) {
+      //用户按了允许授权按钮
+      wx.setStorage({
+        key: 'userInfo',
+        data: e.detail.userInfo,
+      })
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+      });
+      console.log('授权成功', e.detail.userInfo);
+      this.jumpNextView();
+
+    } else {
+      //用户按了拒绝按钮
+      console.log('拒绝使用')
+    }
+  },
+
+  loadUserInfo: function (backres) {
+    var that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        // backres(null);
+        that.setData({
+          userInfo: res.data,
+        })
+        backres(res.data);
+      },
+      fail: function (error) {
+        backres(null);
+      }
+    })
   },
 })
